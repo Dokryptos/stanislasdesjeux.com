@@ -6,8 +6,8 @@ import {
 } from "@sanity/orderable-document-list";
 
 export const filmType = defineType({
-  name: "project",
-  title: "Project",
+  name: "film",
+  title: "Film",
   type: "document",
   icon: ArchiveIcon,
   orderings: [orderRankOrdering],
@@ -21,7 +21,7 @@ export const filmType = defineType({
     },
   ],
   fields: [
-    orderRankField({ type: "project" }),
+    orderRankField({ type: "film" }),
     defineField({
       name: "title",
       title: "Title",
