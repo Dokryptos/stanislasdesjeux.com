@@ -30,4 +30,11 @@ export const structure: StructureResolver = (S, context) =>
         S,
         context,
       }),
+      orderableDocumentListDeskItem({
+        type: "homepage",
+        title: "Homepage",
+        icon: ImagesIcon,
+        S,
+        context,
+      }),
     ]);

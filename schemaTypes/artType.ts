@@ -1,5 +1,4 @@
 import { defineField, defineType, defineArrayMember } from "sanity";
-import { ArchiveIcon } from "@sanity/icons";
 import {
   orderRankField,
   orderRankOrdering,
@@ -9,7 +8,6 @@ export const artType = defineType({
   name: "art",
   title: "Art",
   type: "document",
-  icon: ArchiveIcon,
   orderings: [orderRankOrdering],
   fieldsets: [
     {

@@ -1,5 +1,4 @@
 import { defineField, defineType, defineArrayMember } from "sanity";
-import { ArchiveIcon } from "@sanity/icons";
 import {
   orderRankField,
   orderRankOrdering,
@@ -9,7 +8,6 @@ export const filmType = defineType({
   name: "film",
   title: "Film",
   type: "document",
-  icon: ArchiveIcon,
   orderings: [orderRankOrdering],
   fieldsets: [
     {
@@ -71,6 +69,10 @@ export const filmType = defineType({
           options: {
             hotspot: true,
           },
+        }),
+        defineArrayMember({
+          type: "mux.video",
+          name: "video",
         }),
       ],
     }),
