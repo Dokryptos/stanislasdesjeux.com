@@ -16,14 +16,16 @@ export default function LayoutNavbar() {
         <motion.div className="col-start-3 desktop:col-start-2 ">
           <Link href="/about">About</Link>
         </motion.div>
-        <motion.div
+        <div
           className="col-start-6 tablet:col-start-9 laptop:col-start-12 justify-self-end"
           onMouseEnter={() => setOpenMenu(true)}
           onMouseLeave={() => setOpenMenu(false)}
         >
           <p className="pb-5 justify-self-end">Menu</p>
-          <div
-            className={`${openMenu ? "flex" : "hidden"} flex-col text-[#CECECE] justify-self-end items-end gap-2`}
+          <motion.div
+            animate={openMenu ? { y: 0, opacity: 1 } : { y: -20, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className={`flex flex-col text-[#CECECE] justify-self-end items-end gap-2`}
           >
             <Link href="/stillLife" className="hover:text-black">
               Still Life
@@ -34,8 +36,8 @@ export default function LayoutNavbar() {
             <Link href="/films" className="hover:text-black">
               Films
             </Link>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </Grid>
     </nav>
   );
