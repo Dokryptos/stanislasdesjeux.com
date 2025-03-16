@@ -14,7 +14,6 @@ export default interface Film {
   title: string;
   shortTitle?: string;
   slug: Slug;
-  description: string;
   thumbnail: SanityImage;
   gallery: SanityImage[];
 }

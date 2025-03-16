@@ -16,4 +16,5 @@ export default interface Art {
   slug: Slug;
   thumbnail: SanityImage;
   gallery: SanityImage[];
+  description: string;
 }
