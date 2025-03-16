@@ -17,15 +17,23 @@ export default function LayoutNavbar() {
           <Link href="/about">About</Link>
         </motion.div>
         <motion.div
-          className="col-start-6 tablet:col-start-9 laptop:col-start-12"
+          className="col-start-6 tablet:col-start-9 laptop:col-start-12 justify-self-end"
           onMouseEnter={() => setOpenMenu(true)}
           onMouseLeave={() => setOpenMenu(false)}
         >
-          <p className="pb-6">Menu</p>
-          <div className={`${openMenu ? "flex" : "hidden"} flex-col `}>
-            <Link href="/stillLife">Still Life</Link>
-            <Link href="/art">Art</Link>
-            <Link href="/films">Films</Link>
+          <p className="pb-5 justify-self-end">Menu</p>
+          <div
+            className={`${openMenu ? "flex" : "hidden"} flex-col text-[#CECECE] justify-self-end items-end gap-2`}
+          >
+            <Link href="/stillLife" className="hover:text-black">
+              Still Life
+            </Link>
+            <Link href="/art" className="hover:text-black">
+              Art
+            </Link>
+            <Link href="/films" className="hover:text-black">
+              Films
+            </Link>
           </div>
         </motion.div>
       </Grid>
