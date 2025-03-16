@@ -16,9 +16,13 @@ export default function LayoutNavbar() {
         <motion.div className="col-start-3 desktop:col-start-2 ">
           <Link href="/about">About</Link>
         </motion.div>
-        <motion.div className="col-start-6 tablet:col-start-9 desktop:col-start-12">
-          <p>Menu</p>
-          <div>
+        <motion.div
+          className="col-start-6 tablet:col-start-9 laptop:col-start-12"
+          onMouseEnter={() => setOpenMenu(true)}
+          onMouseLeave={() => setOpenMenu(false)}
+        >
+          <p className="pb-6">Menu</p>
+          <div className={`${openMenu ? "flex" : "hidden"} flex-col `}>
             <Link href="/stillLife">Still Life</Link>
             <Link href="/art">Art</Link>
             <Link href="/films">Films</Link>
