@@ -8,10 +8,9 @@ export default {
   ],
   theme: {
     extend: {
-      // fontFamily: {
-      //   neueGrotesk: ["var(--font-neueHaal)"],
-      //   ppeiko: ["var(--font-ppeiko)"],
-      // },
+      fontFamily: {
+        ppFragment: ["var(--font-ppFragment)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
