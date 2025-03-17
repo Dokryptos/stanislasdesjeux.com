@@ -89,7 +89,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
           </div>
         ))}
       </div>
-      <div className="laptop:flex hidden fixed bottom-0 w-full text-[15px] desktop:text-[24px] justify-center pb-8 desktop:pb-10">
+      <div className="laptop:flex hidden fixed bottom-0 w-full text-[15px] desktop:text-[20px] justify-center pb-8 desktop:pb-10">
         <p>{hoveredTitleProject}</p>
       </div>
     </div>
