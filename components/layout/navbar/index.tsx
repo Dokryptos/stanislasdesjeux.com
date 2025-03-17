@@ -23,6 +23,7 @@ export default function LayoutNavbar() {
         >
           <p className="pb-5 justify-self-end">Menu</p>
           <motion.div
+            initial={{ y: -20, opacity: 0 }}
             animate={openMenu ? { y: 0, opacity: 1 } : { y: -20, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className={`flex flex-col text-[#CECECE] justify-self-end items-end gap-2`}

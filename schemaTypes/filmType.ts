@@ -70,10 +70,10 @@ export const filmType = defineType({
             hotspot: true,
           },
         }),
-        defineArrayMember({
-          type: "mux.video",
-          name: "video",
-        }),
+        // defineArrayMember({
+        //   type: "mux.video",
+        //   name: "video",
+        // }),
       ],
     }),
   ],

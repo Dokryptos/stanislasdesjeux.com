@@ -3,7 +3,7 @@ import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { ImagesIcon } from "@sanity/icons";
 import { PresentationIcon } from "@sanity/icons";
 import { VideoIcon } from "@sanity/icons";
-
+import { DesktopIcon } from "@sanity/icons";
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S, context) =>
   S.list()
@@ -33,7 +33,7 @@ export const structure: StructureResolver = (S, context) =>
       orderableDocumentListDeskItem({
         type: "homepage",
         title: "Homepage",
-        icon: ImagesIcon,
+        icon: DesktopIcon,
         S,
         context,
       }),
