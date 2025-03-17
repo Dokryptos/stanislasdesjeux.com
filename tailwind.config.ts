@@ -19,17 +19,17 @@ export default {
       },
       width: {
         tablet: "640px",
-        laptop: "1024px",
+        laptop: "1020px",
         desktop: "1440px",
       },
       maxWidth: {
         tablet: "640px",
-        laptop: "1024px",
+        laptop: "1020px",
         desktop: "1440px",
       },
       screens: {
         tablet: "640px",
-        laptop: "1024px",
+        laptop: "1020px",
         desktop: "1440px",
         "pointer-fine": { raw: "(pointer: fine)" },
         "pointer-coarse": { raw: "(pointer: coarse)" },
