@@ -24,11 +24,11 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
   return (
     <div className="w-full h-dvh flex items-center justify-center">
       {/* Mobile */}
-      <Grid className="gap-6 tablet:hidden">
+      <Grid className="tablet:hidden">
         {homeData.map((project: HomeImgType, i: number) => (
           <div
             key={project._id}
-            className="col-start-3 col-span-2 place-items-center"
+            className="col-start-3 col-span-2 place-items-center pb-6 max-w-[120px]"
           >
             <motion.div
               initial="hidden"
@@ -40,7 +40,6 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
                 <UIImageSanity
                   asset={project.thumbnail}
                   alt={`Link vers ${project.title}`}
-                  className="max-w-[150px]"
                 />
               </Link>
             </motion.div>
@@ -48,7 +47,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className="pt-2"
+              className="pt-2 text-[8px]"
             >
               {project.title}
             </motion.p>
