@@ -14,8 +14,8 @@ export default function LayoutNavbar() {
 
   useEffect(() => {
     const updateSize = () => {
-      setLogoSize(window.innerWidth > 1024 ? 92 : 73);
-      setSizeLogoAnimation(window.innerWidth > 1024 ? 424 : 242);
+      setLogoSize(window.innerWidth > 1440 ? 92 : 73);
+      setSizeLogoAnimation(window.innerWidth > 1440 ? 424 : 242);
     };
 
     updateSize();
@@ -24,18 +24,25 @@ export default function LayoutNavbar() {
   }, []);
 
   return (
-    <nav className="fixed top-5 left-0 w-full text-[12px]">
+    <nav className="fixed top-5 left-0 w-full text-[12px] desktop:text-[15px]">
       <Grid className="gap-[12px]">
         <motion.div
-          className="col-start-1 col-span-2 desktop:col-span-1 tablet:pt-[3px] desktop:pt-[0px] pt-[3px] desktop:w-90"
-          initial={{ width: sizeLogoAnimation }}
-          animate={{ width: logoSize }}
-          transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+          initial={{ scaleY: 0.3, opacity: 0 }}
+          animate={{ scaleY: 1, opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <Link href="/">
-            <Image src={Logo} alt="Logo Name" />
-          </Link>
+          <motion.div
+            className="col-start-1 col-span-2 desktop:col-span-1 desktop:pt-[4px] pt-[3px] overflow-hidden"
+            initial={{ width: sizeLogoAnimation }}
+            animate={{ width: logoSize }}
+            transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+          >
+            <Link href="/">
+              <Image src={Logo} alt="Logo Name" />
+            </Link>
+          </motion.div>
         </motion.div>
+
         <motion.div
           className="col-start-3 desktop:col-start-2"
           initial={{ opacity: 0 }}
