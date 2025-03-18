@@ -9,13 +9,8 @@ import Logo from "@/public/image/StanDesjeuxLOGO.png";
 
 export default function LayoutNavbar() {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const [sizeLogoAnimation, setSizeLogoAnimation] = useState<number>(424);
+  const [sizeLogoAnimation, setSizeLogoAnimation] = useState<number>(242);
   const [logoSize, setLogoSize] = useState<number>(92);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true); //Hydratation problem
-  }, []);
 
   useEffect(() => {
     const updateSize = () => {
@@ -26,13 +21,14 @@ export default function LayoutNavbar() {
     updateSize();
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
-  }, [isClient]);
+  }, []);
 
   return (
     <nav className="fixed top-5 left-0 w-full text-[12px]">
       <Grid className="gap-[12px]">
         <motion.div
-          className="col-start-1 col-span-2 desktop:col-span-1 tablet:pt-[3px] desktop:pt-[1px] pt-[3px] desktop:w-90"
+          key={logoSize}
+          className="col-start-1 col-span-2 desktop:col-span-1 tablet:pt-[3px] desktop:pt-[0px] pt-[3px] desktop:w-90"
           initial={{ width: sizeLogoAnimation }}
           animate={{ width: logoSize }}
           transition={{ delay: 1, duration: 1, ease: "easeOut" }}
