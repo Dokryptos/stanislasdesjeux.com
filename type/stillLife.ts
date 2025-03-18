@@ -9,7 +9,7 @@ export interface SanityImage {
   };
 }
 
-export default interface LifeStill {
+export default interface StillLife {
   _id: string;
   title: string;
   shortTitle?: string;

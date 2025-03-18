@@ -76,21 +76,33 @@ export const stillLifeType = defineType({
       title: "Motion Content",
       type: "array",
       hidden: ({ document }) => document?.title !== "Motion", // Caché si la catégorie n'est pas "motion"
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (
+            context.document?.title === "Motion" &&
+            (!value || value.length === 0)
+          ) {
+            return "Motion content is required for Motion";
+          }
+          return true;
+        }),
       of: [
         defineArrayMember({
           type: "object",
           name: "motionItem",
+          description:
+            "Visible uniquement sur le module Archives, la Gallery est différente et propose un titre avec chaque photo, les deux doivent être rempli.",
+
           fields: [
-            // Titre spécifique pour chaque image/vidéo dans "motion"
             defineField({
               name: "motionTitle",
               title: "Motion Title",
               type: "string",
+              description:
+                "Visible uniquement sur le module Motion, la Gallery est différente et propose un titre avec chaque photo, les deux doivent être rempli.",
               validation: (rule) =>
                 rule.required().error("Motion item title is required"),
             }),
-
-            // Image associée (optionnelle, mais importante pour l'élément Motion)
             defineField({
               name: "Motionimage",
               title: "Motion Image",
@@ -113,13 +125,24 @@ export const stillLifeType = defineType({
       name: "archivesContent",
       title: "Archives Content",
       type: "array",
+      description:
+        "Visible uniquement sur le module Archives, la Gallery est différente et propose un titre avec chaque photo, les deux doivent être rempli.",
       hidden: ({ document }) => document?.title !== "Archives", // Caché si la catégorie n'est pas "motion"
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (
+            context.document?.title === "Archives" &&
+            (!value || value.length === 0)
+          ) {
+            return "Archives content is required for Archives";
+          }
+          return true;
+        }),
       of: [
         defineArrayMember({
           type: "object",
           name: "archives Item",
           fields: [
-            // Title only for Archives
             defineField({
               name: "archivesTitle",
               title: "Archives Title",
@@ -127,8 +150,6 @@ export const stillLifeType = defineType({
               validation: (rule) =>
                 rule.required().error("Archives item title is required"),
             }),
-
-            // Image only for Archives
             defineField({
               name: "archivesImage",
               title: "Archives Image",
@@ -148,15 +169,28 @@ export const stillLifeType = defineType({
       title: "gallery",
       type: "array",
       hidden: ({ document }) =>
-        document?.title == "Motion" || document?.title == "Archives", // hidden if is not archives or motion
+        document?.title == "Motion" || document?.title == "Archives", // hidden if is archives or motion
       description:
         "Select all the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image",
       validation: (rule) =>
-        rule.required().error(`Required to generate a page on the website`),
+        rule.custom((value, context) => {
+          if (
+            context.document?.title === "Motion" ||
+            context.document?.title === "Archives"
+          ) {
+            return true;
+          }
+          if (!value || value.length === 0) {
+            return "At least one image is required";
+          }
+          return true;
+        }),
       of: [
         defineArrayMember({
           type: "image",
           name: "image",
+          validation: (rule) =>
+            rule.required().error("Image item Image is required"),
           options: {
             hotspot: true,
           },

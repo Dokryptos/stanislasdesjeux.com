@@ -17,7 +17,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
     hidden: { opacity: 0 },
     visible: (i: number) => ({
       opacity: 1,
-      transition: { delay: 4 + i * 0.2, duration: 1 },
+      transition: { delay: 3 + i * 0.2, duration: 1 },
     }),
   };
 

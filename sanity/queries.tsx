@@ -18,3 +18,16 @@ export async function getHomeImg(): Promise<HomeImgType[]> {
   }
   return data;
 }
+
+export const STILLLIFE_QUERY = defineQuery(`*[
+  _type == "stillLife"
+] | order(orderRank) {_id, title, thumbnail, slug, categorie, motionContent, archivesContent, gallery}`);
+
+// Fonction pour récupérer les projets (Serveur)
+export async function getAllStillLife(): Promise<StillLifeType[]> {
+  const { data } = await sanityFetch({ query: STILLLIFE_QUERY });
+  if (!data) {
+    notFound();
+  }
+  return data;
+}
