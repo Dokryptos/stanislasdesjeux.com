@@ -14,6 +14,7 @@ export default interface LifeStill {
   title: string;
   shortTitle?: string;
   slug: Slug;
+  categorie: string;
   description: string;
   thumbnail: SanityImage;
   gallery: SanityImage[];
