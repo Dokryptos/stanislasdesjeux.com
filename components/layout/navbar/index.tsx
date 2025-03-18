@@ -59,12 +59,12 @@ export default function LayoutNavbar() {
           onMouseEnter={() => setOpenMenu(true)}
           onMouseLeave={() => setOpenMenu(false)}
         >
-          <p className="pb-5 justify-self-end items-end">Menu</p>
+          <p className="pb-5 justify-self-end">Menu</p>
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={openMenu ? { y: 0, opacity: 1 } : { y: -20, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={`flex flex-col text-[#CECECE] justify-self-end items-end gap-2`}
+            className={`flex flex-col text-[#CECECE] items-end gap-2`}
           >
             <Link href="/stillLife" className="hover:text-black">
               Still Life
