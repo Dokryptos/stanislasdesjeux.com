@@ -27,7 +27,6 @@ export default function LayoutNavbar() {
     <nav className="fixed top-5 left-0 w-full text-[12px]">
       <Grid className="gap-[12px]">
         <motion.div
-          key={logoSize}
           className="col-start-1 col-span-2 desktop:col-span-1 tablet:pt-[3px] desktop:pt-[0px] pt-[3px] desktop:w-90"
           initial={{ width: sizeLogoAnimation }}
           animate={{ width: logoSize }}
