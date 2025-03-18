@@ -3,24 +3,56 @@
 import { motion } from "framer-motion";
 import Grid from "@/components/ui/grid";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/public/image/StanDesjeuxLOGO.png";
 
 export default function LayoutNavbar() {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [sizeLogoAnimation, setSizeLogoAnimation] = useState<number>(424);
+  const [logoSize, setLogoSize] = useState<number>(92);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); //Hydratation problem
+  }, []);
+
+  useEffect(() => {
+    const updateSize = () => {
+      setLogoSize(window.innerWidth > 1024 ? 92 : 73);
+      setSizeLogoAnimation(window.innerWidth > 1024 ? 424 : 242);
+    };
+
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, [isClient]);
+
   return (
     <nav className="fixed top-5 left-0 w-full text-[12px]">
       <Grid className="gap-[12px]">
-        <motion.div className="col-start-1 col-span-2 desktop:col-span-1 ">
+        <motion.div
+          className="col-start-1 col-span-2 desktop:col-span-1 tablet:pt-[3px] desktop:pt-[1px] pt-[3px] desktop:w-90"
+          initial={{ width: sizeLogoAnimation }}
+          animate={{ width: logoSize }}
+          transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+        >
           <Link href="/">
             <Image src={Logo} alt="Logo Name" />
           </Link>
         </motion.div>
-        <motion.div className="col-start-3 desktop:col-start-2 ">
+        <motion.div
+          className="col-start-3 desktop:col-start-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+        >
           <Link href="/about">About</Link>
         </motion.div>
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
           className="col-start-6 tablet:col-start-9 laptop:col-start-12 justify-self-end"
           onMouseEnter={() => setOpenMenu(true)}
           onMouseLeave={() => setOpenMenu(false)}
@@ -42,7 +74,7 @@ export default function LayoutNavbar() {
               Films
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
       </Grid>
     </nav>
   );
