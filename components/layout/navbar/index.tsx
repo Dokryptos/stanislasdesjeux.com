@@ -35,7 +35,7 @@ export default function LayoutNavbar() {
             className="col-start-1 col-span-2 desktop:col-span-1 desktop:pt-[4px] pt-[3px] overflow-hidden"
             initial={{ width: sizeLogoAnimation }}
             animate={{ width: logoSize }}
-            transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+            transition={{ delay: 1, duration: 1, ease: "easeInOut" }}
           >
             <Link href="/">
               <Image src={Logo} alt="Logo Name" />

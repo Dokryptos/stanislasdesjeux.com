@@ -28,7 +28,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
         {homeData.map((project: HomeImgType, i: number) => (
           <div
             key={project._id}
-            className="col-start-3 col-span-2 place-items-center pb-6 max-w-[120px]"
+            className="col-start-3 col-span-2 flex flex-col items-center pb-6 max-w-[110px]"
           >
             <motion.div
               initial="hidden"
