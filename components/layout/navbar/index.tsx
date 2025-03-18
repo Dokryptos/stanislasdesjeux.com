@@ -55,11 +55,11 @@ export default function LayoutNavbar() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="col-start-6 tablet:col-start-9 laptop:col-start-12 justify-self-end"
+          className="col-start-6 tablet:col-start-9 laptop:col-start-12"
           onMouseEnter={() => setOpenMenu(true)}
           onMouseLeave={() => setOpenMenu(false)}
         >
-          <p className="pb-5 justify-self-end">Menu</p>
+          <p className="pb-5 justify-self-end items-end">Menu</p>
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={openMenu ? { y: 0, opacity: 1 } : { y: -20, opacity: 0 }}
