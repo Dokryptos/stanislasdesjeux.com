@@ -72,128 +72,55 @@ export const stillLifeType = defineType({
       ],
     }),
     defineField({
-      name: "motionContent",
-      title: "Motion Content",
-      type: "array",
-      hidden: ({ document }) => document?.title !== "Motion", // Caché si la catégorie n'est pas "motion"
-      validation: (rule) =>
-        rule.custom((value, context) => {
-          if (
-            context.document?.title === "Motion" &&
-            (!value || value.length === 0)
-          ) {
-            return "Motion content is required for Motion";
-          }
-          return true;
-        }),
-      of: [
-        defineArrayMember({
-          type: "object",
-          name: "motionItem",
-          description:
-            "Visible uniquement sur le module Archives, la Gallery est différente et propose un titre avec chaque photo, les deux doivent être rempli.",
-
-          fields: [
-            defineField({
-              name: "motionTitle",
-              title: "Motion Title",
-              type: "string",
-              description:
-                "Visible uniquement sur le module Motion, la Gallery est différente et propose un titre avec chaque photo, les deux doivent être rempli.",
-              validation: (rule) =>
-                rule.required().error("Motion item title is required"),
-            }),
-            defineField({
-              name: "Motionimage",
-              title: "Motion Image",
-              type: "image",
-              description:
-                "Select the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version with 1 image",
-            }),
-            // defineField({
-            //   name: "videoMotion",
-            //   title: "Video Motion",
-            //   type: "mux.video",
-            //   description:
-            //     "Select the video you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version only 1 video",
-            // }),
-          ],
-        }),
-      ],
-    }),
-    defineField({
-      name: "archivesContent",
-      title: "Archives Content",
-      type: "array",
-      description:
-        "Visible uniquement sur le module Archives, la Gallery est différente et propose un titre avec chaque photo, les deux doivent être rempli.",
-      hidden: ({ document }) => document?.title !== "Archives", // Caché si la catégorie n'est pas "motion"
-      validation: (rule) =>
-        rule.custom((value, context) => {
-          if (
-            context.document?.title === "Archives" &&
-            (!value || value.length === 0)
-          ) {
-            return "Archives content is required for Archives";
-          }
-          return true;
-        }),
-      of: [
-        defineArrayMember({
-          type: "object",
-          name: "archives Item",
-          fields: [
-            defineField({
-              name: "archivesTitle",
-              title: "Archives Title",
-              type: "string",
-              validation: (rule) =>
-                rule.required().error("Archives item title is required"),
-            }),
-            defineField({
-              name: "archivesImage",
-              title: "Archives Image",
-              type: "image",
-              description:
-                "Select the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version with 1 image",
-              validation: (rule) =>
-                rule.required().error("Archives item Image is required"),
-            }),
-          ],
-        }),
-      ],
-    }),
-
-    defineField({
       name: "gallery",
       title: "gallery",
       type: "array",
-      hidden: ({ document }) =>
-        document?.title == "Motion" || document?.title == "Archives", // hidden if is archives or motion
       description:
         "Select all the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image",
       validation: (rule) =>
-        rule.custom((value, context) => {
-          if (
-            context.document?.title === "Motion" ||
-            context.document?.title === "Archives"
-          ) {
-            return true;
-          }
-          if (!value || value.length === 0) {
-            return "At least one image is required";
-          }
-          return true;
-        }),
+        rule.required().error(`Required to generate a page on the website`),
       of: [
         defineArrayMember({
-          type: "image",
-          name: "image",
-          validation: (rule) =>
-            rule.required().error("Image item Image is required"),
-          options: {
-            hotspot: true,
-          },
+          type: "object",
+          name: "galleryItem",
+          fields: [
+            defineField({
+              name: "media",
+              title: "Image or Video",
+              type: "array", // array pour contenir soit des images soit des vidéos
+              of: [
+                defineArrayMember({
+                  type: "image",
+                  name: "image",
+                  options: { hotspot: true },
+                }),
+                defineArrayMember({
+                  type: "mux.video",
+                  name: "video",
+                }),
+              ],
+            }),
+            defineField({
+              name: "imageTitle",
+              title: "Title of the Image or Video",
+              type: "string",
+              description:
+                "Title related to the media (Visible only for Motion & Archives).",
+              validation: (Rule) =>
+                Rule.custom((value, context) => {
+                  const { document } = context;
+                  if (
+                    document?.title === "Motion" ||
+                    document?.title === "Archives"
+                  ) {
+                    return value
+                      ? true
+                      : "Title is required for Motion and Archives.";
+                  }
+                  return true;
+                }),
+            }),
+          ],
         }),
       ],
     }),
