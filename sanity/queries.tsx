@@ -21,7 +21,7 @@ export async function getHomeImg(): Promise<HomeImgType[]> {
 
 export const STILLLIFE_QUERY = defineQuery(`*[
   _type == "stillLife"
-] | order(orderRank) {_id, title, thumbnail, slug, categorie, motionContent, archivesContent, gallery}`);
+] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}`);
 
 // Fonction pour récupérer les projets (Serveur)
 export async function getAllStillLife(): Promise<StillLifeType[]> {
