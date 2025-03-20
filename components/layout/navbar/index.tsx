@@ -24,7 +24,7 @@ export default function LayoutNavbar() {
   }, []);
 
   return (
-    <nav className="fixed z-20 top-5 left-0 w-full text-[12px] desktop:text-[15px]">
+    <nav className="fixed z-30 top-5 left-0 w-full text-[12px] desktop:text-[15px]">
       <Grid className="gap-[12px]">
         <motion.div
           initial={{ scaleY: 0.3, opacity: 0 }}
