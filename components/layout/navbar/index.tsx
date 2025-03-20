@@ -31,9 +31,9 @@ export default function LayoutNavbar() {
     <nav className="fixed z-30 top-5 left-0 w-full text-[15px]">
       <Grid className="gap-[12px]">
         <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 12, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          initial={{ scaleY: 0.3, opacity: 0 }}
+          animate={{ scaleY: 1, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
         >
           <motion.div
             className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px] overflow-hidden"
@@ -59,17 +59,21 @@ export default function LayoutNavbar() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="col-start-6 tablet:col-start-9 laptop:col-start-12"
+          className="col-start-6 tablet:col-start-9 laptop:col-start-12 col-span-2 w-full"
           onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
           onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
           onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
         >
           <p className="pb-5 justify-self-end">Menu</p>
           <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={openMenu ? { y: 0, opacity: 1 } : { y: -20, opacity: 0 }}
+            initial={{ y: -20, opacity: 0, display: "none" }}
+            animate={
+              openMenu
+                ? { y: 0, opacity: 1, display: "flex" }
+                : { y: -20, opacity: 0, display: "none" }
+            }
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={`flex flex-col text-[#CECECE] items-end gap-2`}
+            className={`flex flex-col text-[#CECECE] items-end col-span-2 gap-2 w-auto`}
           >
             <Link href="/stillLife" className="hover:text-black">
               Still Life
