@@ -2,7 +2,7 @@
 import StillLifeType from "@/type/stillLife";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ThumbnailGrid from "../ui/grid/thumbnailGrid";
 
 interface StillLifeDataProps {
@@ -13,7 +13,7 @@ export default function StillLifeComponent({
   stillLifeData,
 }: StillLifeDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-
+  const [isMobileTablet, setIsMobileTablet] = useState(false);
   const listVariantAnimation = {
     hidden: { opacity: 0 },
     visible: (i: number) => ({
@@ -21,6 +21,17 @@ export default function StillLifeComponent({
       transition: { delay: i * 0.2, duration: 0.5 },
     }),
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileTablet(window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="relative">
@@ -49,7 +60,7 @@ export default function StillLifeComponent({
                   {data.title}
                 </p>
               </Link>
-              {hoveredProject === i && (
+              {(hoveredProject === i || isMobileTablet) && (
                 <div className="text-[7px] pl-1 z-20 desktop:p-2">
                   {data?.gallery && data.gallery.length ? (
                     data.gallery.length <= 10 ? (
@@ -66,7 +77,7 @@ export default function StillLifeComponent({
           );
         })}
       </div>
-      <div className="fixed top-0 left-0 right-0 bottom-0 z-0">
+      <div className="hidden laptop:block fixed top-0 left-0 right-0 bottom-0 z-0">
         {hoveredProject !== null && (
           <ThumbnailGrid
             thumbnails={stillLifeData[hoveredProject]?.thumbnail}
