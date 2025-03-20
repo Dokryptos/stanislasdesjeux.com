@@ -9,25 +9,23 @@ import Logo from "@/public/image/StanDesjeuxLOGO.png";
 
 export default function LayoutNavbar() {
   const [openMenu, setOpenMenu] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-
-  const getLogoSize = () => {
-    return window.innerWidth > 1024
-      ? { normal: 92, animated: 424 }
-      : { normal: 73, animated: 242 };
-  };
-
-  const [logoSize, setLogoSize] = useState(getLogoSize);
+  const [isMobile, setIsMobile] = useState(false);
+  const [logoSize, setLogoSize] = useState<{
+    normal: number;
+    animated: number;
+  } | null>(null);
 
   useEffect(() => {
-    const updateSize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-      setLogoSize(getLogoSize());
-    };
-
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+    const screenWidth = window.innerWidth;
+    const mobile = screenWidth <= 1024;
+    const desktop = screenWidth <= 1440;
+    setIsMobile(mobile);
+    setLogoSize(
+      desktop ? { normal: 73, animated: 242 } : { normal: 92, animated: 424 }
+    );
   }, []);
+
+  if (!logoSize) return null;
 
   return (
     <nav className="fixed z-30 top-5 left-0 w-full text-[12px] desktop:text-[15px]">
