@@ -28,7 +28,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
         {homeData.map((homeProject: HomeImgType, i: number) => (
           <div
             key={homeProject._id}
-            className="col-start-3 col-span-2 flex flex-col items-center pb-4 max-w-[110px]"
+            className="col-start-3 col-span-2 flex flex-col items-center pb-2 max-w-[110px]"
           >
             <motion.div
               initial="hidden"
@@ -47,7 +47,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 5, duration: 0.5 }}
-              className="pt-2 text-[15px]"
+              className="pt-2 text-[10px]"
             >
               {homeProject.title}
             </motion.p>
