@@ -35,7 +35,7 @@ export default function StillLifeComponent({
 
   return (
     <div className="relative">
-      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20">
+      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 mt-[40px] pb-[40px]">
         {stillLifeData.map((data: StillLifeType, i: number) => {
           return (
             <motion.div
