@@ -8,17 +8,22 @@ import Image from "next/image";
 import Logo from "@/public/image/StanDesjeuxLOGO.png";
 
 export default function LayoutNavbar() {
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const [sizeLogoAnimation, setSizeLogoAnimation] = useState<number>(242);
-  const [logoSize, setLogoSize] = useState<number>(92);
+  const getLogoSize = () => {
+    return window.innerWidth > 1024
+      ? { normal: 92, animated: 424 }
+      : { normal: 73, animated: 242 };
+  };
+
+  const [openMenu, setOpenMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+  const [logoSize, setLogoSize] = useState(getLogoSize);
 
   useEffect(() => {
     const updateSize = () => {
-      setLogoSize(window.innerWidth > 1440 ? 92 : 73);
-      setSizeLogoAnimation(window.innerWidth > 1440 ? 424 : 242);
+      setIsMobile(window.innerWidth <= 1024);
+      setLogoSize(getLogoSize());
     };
 
-    updateSize();
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
   }, []);
@@ -33,8 +38,8 @@ export default function LayoutNavbar() {
         >
           <motion.div
             className="col-start-1 col-span-2 desktop:col-span-1 desktop:pt-[4px] pt-[3px] overflow-hidden"
-            initial={{ width: sizeLogoAnimation }}
-            animate={{ width: logoSize }}
+            initial={{ width: logoSize.animated }}
+            animate={{ width: logoSize.normal }}
             transition={{ delay: 1, duration: 1, ease: "easeInOut" }}
           >
             <Link href="/">
@@ -56,8 +61,9 @@ export default function LayoutNavbar() {
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
           className="col-start-6 tablet:col-start-9 laptop:col-start-12"
-          onMouseEnter={() => setOpenMenu(true)}
-          onMouseLeave={() => setOpenMenu(false)}
+          onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
+          onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
+          onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
         >
           <p className="pb-5 justify-self-end">Menu</p>
           <motion.div
