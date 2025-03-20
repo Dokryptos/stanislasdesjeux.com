@@ -21,14 +21,14 @@ export default function LayoutNavbar() {
     const desktop = screenWidth <= 1440;
     setIsMobile(mobile);
     setLogoSize(
-      desktop ? { normal: 73, animated: 242 } : { normal: 92, animated: 424 }
+      desktop ? { normal: 92, animated: 242 } : { normal: 92, animated: 424 }
     );
   }, []);
 
   if (!logoSize) return null;
 
   return (
-    <nav className="fixed z-30 top-5 left-0 w-full text-[12px] desktop:text-[15px]">
+    <nav className="fixed z-30 top-5 left-0 w-full text-[15px]">
       <Grid className="gap-[12px]">
         <motion.div
           initial={{ height: 0, opacity: 0 }}
@@ -36,7 +36,7 @@ export default function LayoutNavbar() {
           transition={{ duration: 1, ease: "easeInOut" }}
         >
           <motion.div
-            className="col-start-1 col-span-2 desktop:col-span-1 desktop:pt-[4px] pt-[3px] overflow-hidden"
+            className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px] overflow-hidden"
             initial={{ width: logoSize.animated }}
             animate={{ width: logoSize.normal }}
             transition={{ delay: 1, duration: 1, ease: "easeInOut" }}
