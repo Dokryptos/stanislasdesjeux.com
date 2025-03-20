@@ -16,6 +16,6 @@ export default interface StillLife {
   slug: Slug;
   categorie: string;
   description: string;
-  thumbnail: SanityImage;
+  thumbnail: SanityImage[];
   gallery: SanityImage[];
 }
