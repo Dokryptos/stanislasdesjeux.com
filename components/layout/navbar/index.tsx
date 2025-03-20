@@ -8,14 +8,15 @@ import Image from "next/image";
 import Logo from "@/public/image/StanDesjeuxLOGO.png";
 
 export default function LayoutNavbar() {
+  const [openMenu, setOpenMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+
   const getLogoSize = () => {
     return window.innerWidth > 1024
       ? { normal: 92, animated: 424 }
       : { normal: 73, animated: 242 };
   };
 
-  const [openMenu, setOpenMenu] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [logoSize, setLogoSize] = useState(getLogoSize);
 
   useEffect(() => {
@@ -32,9 +33,9 @@ export default function LayoutNavbar() {
     <nav className="fixed z-30 top-5 left-0 w-full text-[12px] desktop:text-[15px]">
       <Grid className="gap-[12px]">
         <motion.div
-          initial={{ scaleY: 0.3, opacity: 0 }}
-          animate={{ scaleY: 1, opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 12, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
         >
           <motion.div
             className="col-start-1 col-span-2 desktop:col-span-1 desktop:pt-[4px] pt-[3px] overflow-hidden"
