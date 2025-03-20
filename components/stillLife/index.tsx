@@ -51,17 +51,17 @@ export default function StillLifeComponent({
             onMouseLeave={() => setHoveredProject(null)}
           >
             {hoveredProject === i && (
-              <div className="text-[7px] laptop:pr-1 z-20 desktop:pr-2  mix-blend-difference">
+              <div className="text-[7px] laptop:pr-1 z-20 desktop:pr-2">
                 {data?.categorie}
               </div>
             )}
             <Link href={`/stillLife/${data.slug.current}`}>
-              <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] laptop:hover:text-black z-20 laptop:hover:italic  mix-blend-difference">
+              <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black laptop:hover:italic">
                 {data.title}
               </p>
             </Link>
             {hoveredProject === i && (
-              <div className="text-[7px] pl-1 desktop:p-2 z-20 mix-blend-difference">
+              <div className="text-[7px] pl-1 z-20 desktop:p-2">
                 {data?.gallery && data.gallery.length ? (
                   data.gallery.length <= 10 ? (
                     <>0{data.gallery.length}</>
