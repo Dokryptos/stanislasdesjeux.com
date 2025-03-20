@@ -1,9 +1,9 @@
 "use client";
-import StillLifeType, { SanityImage } from "@/type/stillLife";
+import StillLifeType from "@/type/stillLife";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { UIImageSanity } from "../ui/image/sanity";
+import ThumbnailGrid from "../ui/grid/thumbnailGrid";
 
 interface StillLifeDataProps {
   stillLifeData: StillLifeType[];
@@ -13,17 +13,6 @@ export default function StillLifeComponent({
   stillLifeData,
 }: StillLifeDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [positions, setPositions] = useState<{ top: string; left: string }[]>(
-    []
-  );
-
-  const handleImagePosition = () => {
-    const newPositions = Array.from({ length: 3 }).map(() => ({
-      top: Math.random() * 100 + "%",
-      left: Math.random() * 100 + "%",
-    }));
-    setPositions(newPositions);
-  };
 
   const listVariantAnimation = {
     hidden: { opacity: 0 },
@@ -34,66 +23,57 @@ export default function StillLifeComponent({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-dvh">
-      {stillLifeData.map((data: StillLifeType, i: number) => {
-        return (
-          <motion.div
-            key={data._id}
-            custom={i}
-            initial="hidden"
-            animate="visible"
-            variants={listVariantAnimation}
-            className="flex items-center"
-            onMouseEnter={() => {
-              setHoveredProject(i);
-              handleImagePosition();
-            }}
-            onMouseLeave={() => setHoveredProject(null)}
-          >
-            {hoveredProject === i && (
-              <div className="text-[7px] laptop:pr-1 z-20 desktop:pr-2">
-                {data?.categorie}
-              </div>
-            )}
-            <Link href={`/stillLife/${data.slug.current}`}>
-              <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black laptop:hover:italic">
-                {data.title}
-              </p>
-            </Link>
-            {hoveredProject === i && (
-              <div className="text-[7px] pl-1 z-20 desktop:p-2">
-                {data?.gallery && data.gallery.length ? (
-                  data.gallery.length <= 10 ? (
-                    <>0{data.gallery.length}</>
+    <div className="relative">
+      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20">
+        {stillLifeData.map((data: StillLifeType, i: number) => {
+          return (
+            <motion.div
+              key={data._id}
+              custom={i}
+              initial="hidden"
+              animate="visible"
+              variants={listVariantAnimation}
+              className="flex items-center  laptop:hover:text-black"
+              onMouseEnter={() => {
+                setHoveredProject(i);
+              }}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              {hoveredProject === i && (
+                <div className="text-[7px] laptop:pr-1 z-20 desktop:pr-2">
+                  {data?.categorie}
+                </div>
+              )}
+              <Link href={`/stillLife/${data.slug.current}`}>
+                <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black laptop:hover:italic">
+                  {data.title}
+                </p>
+              </Link>
+              {hoveredProject === i && (
+                <div className="text-[7px] pl-1 z-20 desktop:p-2">
+                  {data?.gallery && data.gallery.length ? (
+                    data.gallery.length <= 10 ? (
+                      <>0{data.gallery.length}</>
+                    ) : (
+                      <>{data.gallery.length}</>
+                    )
                   ) : (
-                    <>{data.gallery.length}</>
-                  )
-                ) : (
-                  <>00</>
-                )}
-              </div>
-            )}
-            {hoveredProject === i &&
-              data?.thumbnail.map((image: SanityImage, i: number) => (
-                <motion.div
-                  key={image.asset._ref}
-                  style={{
-                    left: positions[i]?.left,
-                    top: positions[i].top,
-                    position: "absolute",
-                  }}
-                  className="h-[300px] w-auto"
-                >
-                  <UIImageSanity
-                    asset={image.asset}
-                    alt={`image thumbnail ${data.title} ${i}`}
-                    className="h-[300px] w-auto"
-                  />
-                </motion.div>
-              ))}
-          </motion.div>
-        );
-      })}
+                    <>00</>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
+      </div>
+      <div className="fixed top-0 left-0 right-0 bottom-0 z-0">
+        {hoveredProject !== null && (
+          <ThumbnailGrid
+            thumbnails={stillLifeData[hoveredProject]?.thumbnail}
+            projectId={stillLifeData[hoveredProject]?._id}
+          />
+        )}
+      </div>
     </div>
   );
 }
