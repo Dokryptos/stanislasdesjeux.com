@@ -1,15 +1,34 @@
 import StillLifeSlugComponent from "@/components/stillLife/slugComponent";
-import { getStillLifeSlug } from "@/sanity/queries";
 import { notFound } from "next/navigation";
+import { defineQuery } from "next-sanity";
+import { sanityFetch } from "@/sanity/lib/live";
+
+export const STILLLIFE_SLUG_QUERY = defineQuery(`
+  {
+  "stillLifeCurrentSlug": *[
+    _type == "stillLife" &&
+    slug.current == $slug
+][0]{
+  ...,
+},
+  "stillLifeAllProject": *[
+  _type == "stillLife"
+] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}
+}
+`);
 
 export default async function stillLifeSlug({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const data = await getStillLifeSlug({ params });
-  if (!data) notFound();
-
+  const { data } = await sanityFetch({
+    query: STILLLIFE_SLUG_QUERY,
+    params: { slug: (await params).slug },
+  });
+  if (!data) {
+    notFound();
+  }
   const { stillLifeCurrentSlug, stillLifeAllProject } = data;
   return (
     <StillLifeSlugComponent

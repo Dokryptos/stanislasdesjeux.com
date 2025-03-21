@@ -31,33 +31,33 @@ export async function getAllStillLife(): Promise<StillLifeType[]> {
   return data;
 }
 
-export const STILLLIFE_SLUG_QUERY = defineQuery(`
-  {
-  "stillLifeCurrentSlug": *[
-    _type == "stillLife" &&
-    slug.current == $slug
-][0]{
-  ...,
-},
-  "stillLifeAllProject": *[
-  _type == "stillLife"
-] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}
-}
-`);
-export async function getStillLifeSlug({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<{
-  stillLifeCurrentSlug: StillLifeType;
-  stillLifeAllProject: StillLifeType[];
-}> {
-  const { data } = await sanityFetch({
-    query: STILLLIFE_SLUG_QUERY,
-    params: { slug: params.slug },
-  });
-  if (!data) {
-    notFound();
-  }
-  return data;
-}
+// export const STILLLIFE_SLUG_QUERY = defineQuery(`
+//   {
+//   "stillLifeCurrentSlug": *[
+//     _type == "stillLife" &&
+//     slug.current == $slug
+// ][0]{
+//   ...,
+// },
+//   "stillLifeAllProject": *[
+//   _type == "stillLife"
+// ] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}
+// }
+// `);
+// export async function getStillLifeSlug({
+//   params,
+// }: {
+//   params: { slug: string };
+// }): Promise<{
+//   stillLifeCurrentSlug: StillLifeType;
+//   stillLifeAllProject: StillLifeType[];
+// }> {
+//   const { data } = await sanityFetch({
+//     query: STILLLIFE_SLUG_QUERY,
+//     params: { slug: params.slug },
+//   });
+//   if (!data) {
+//     notFound();
+//   }
+//   return data;
+// }
