@@ -94,10 +94,10 @@ export const stillLifeType = defineType({
                   name: "image",
                   options: { hotspot: true },
                 }),
-                // defineArrayMember({
-                //   type: "mux.video",
-                //   name: "video",
-                // }),
+                defineArrayMember({
+                  type: "mux.video",
+                  name: "video",
+                }),
               ],
             }),
             defineField({
