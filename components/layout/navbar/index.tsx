@@ -73,7 +73,7 @@ export default function LayoutNavbar() {
                 : { y: -20, opacity: 0, display: "none" }
             }
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={`flex flex-col text-[#CECECE] items-end justify-self-end col-span-2 gap-2 w-auto pr-5 laptop:pr-0`}
+            className={`flex flex-col text-[#CECECE] items-end justify-self-end col-span-full gap-2 w-full overflow-hidden`}
           >
             <Link href="/stillLife" className="hover:text-black">
               Still Life
