@@ -10,6 +10,8 @@ import Logo from "@/public/image/StanDesjeuxLOGO.png";
 export default function LayoutNavbar() {
   const [openMenu, setOpenMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [topDivLogo, setTopDivLogo] = useState<number>(64);
+  const [widthDivLogo, setWidthDivLogo] = useState<number>(250);
   const [logoSize, setLogoSize] = useState<{
     normal: number;
     animated: number;
@@ -23,30 +25,54 @@ export default function LayoutNavbar() {
     setLogoSize(
       desktop ? { normal: 92, animated: 242 } : { normal: 92, animated: 424 }
     );
+    setTopDivLogo(desktop ? 64 : 80);
+    setWidthDivLogo(desktop ? 250 : 450);
   }, []);
 
-  if (!logoSize) return null;
+  if (!logoSize || !widthDivLogo || !topDivLogo) return null;
 
   return (
     <nav className="fixed z-30 top-5 left-0 w-full text-[15px]">
       <Grid className="gap-[12px]">
-        <motion.div
-          initial={{ scaleY: 0.3, opacity: 0 }}
-          animate={{ scaleY: 1, opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-        >
+        {/* {isHomepage ? ( */}
+        <div className="relative">
           <motion.div
-            className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px] overflow-hidden"
-            initial={{ width: logoSize.animated }}
-            animate={{ width: logoSize.normal }}
-            transition={{ delay: 1, duration: 1, ease: "easeInOut" }}
+            initial={{ display: "block" }}
+            animate={{ display: "none" }}
+            transition={{ duration: 0.3 }}
+            style={{ top: `${topDivLogo}px`, width: widthDivLogo }}
+            className="top-16 z-10 fixed w-[500px] h-[100px] bg-white"
+          ></motion.div>
+          <motion.div
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="relative"
+          >
+            <motion.div
+              className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px]"
+              initial={{ width: logoSize.animated }}
+              animate={{ width: logoSize.normal }}
+              transition={{ delay: 1, duration: 1, ease: "anticipate" }}
+            >
+              <Link href="/">
+                <Image src={Logo} alt="Logo Name" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+        {/* ) : (
+          <motion.div
+            className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 1, ease: "easeInOut" }}
           >
             <Link href="/">
               <Image src={Logo} alt="Logo Name" />
             </Link>
           </motion.div>
-        </motion.div>
-
+        )}*/}
         <motion.div
           className="col-start-3 desktop:col-start-2"
           initial={{ opacity: 0 }}
