@@ -39,7 +39,7 @@ export default function LayoutNavbar() {
           <motion.div
             initial={{ display: "block" }}
             animate={{ display: "none" }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.5 }}
             style={{ top: `${topDivLogo}px`, width: widthDivLogo }}
             className="top-16 z-10 fixed w-[500px] h-[100px] bg-white"
           ></motion.div>
