@@ -5,6 +5,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import Grid from "../ui/grid";
 import { useRouter } from "next/navigation";
 import { UIImageSanity } from "../ui/image/sanity";
+import CarouselNavigation from "../carousel/navigation";
 
 interface StillLifeSlugProps {
   stillLifeCurrentSlug: StillLife;
@@ -60,29 +61,31 @@ export default function StillLifeSlugComponent({
         (currentImageIndex + 1) % stillLifeCurrentProject.gallery.length
       );
     }
-
-    const prevImage = () => {
-      if (currentImageIndex === 0) {
-        const prevProject =
-          stillLifeProjectArray[
-            (currentImageIndex - 1 + stillLifeProjectArray.length) %
-              stillLifeProjectArray.length
-          ];
-        router.push(`/stillLife/${prevProject.slug.current}`);
-      } else {
-        setCurrentImageIndex(currentImageIndex - 1);
-      }
-    };
   };
+
+  const prevImage = () => {
+    if (currentImageIndex === 0) {
+      const prevProject =
+        stillLifeProjectArray[
+          (currentImageIndex - 1 + stillLifeProjectArray.length) %
+            stillLifeProjectArray.length
+        ];
+      router.push(`/stillLife/${prevProject.slug.current}`);
+    } else {
+      setCurrentImageIndex(currentImageIndex - 1);
+    }
+  };
+
   return (
     <div>
-      <Grid>
+      <Grid className="w-full h-dvh overflow-hidden">
         <div>
           <UIImageSanity
             asset={stillLifeCurrentProject?.gallery[currentImageIndex].asset}
             alt={`Image ${currentImageIndex} du project ${stillLifeCurrentProject?.title}`}
           />
         </div>
+        <CarouselNavigation onPrev={prevImage} onNext={nextImage} />
         <div></div>
       </Grid>
     </div>

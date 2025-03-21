@@ -8,7 +8,7 @@ export default function CarouselNavigation({
   onNext,
 }: CarouselNavigationProps) {
   return (
-    <div className="absolute inset-0 flex z-10 mt-[80px]">
+    <div className="absolute inset-0 flex z-10 mt-[50px]">
       <div
         className="w-1/2 h-full cursor-pointer"
         onClick={onPrev} // call function `onPrev`  props
