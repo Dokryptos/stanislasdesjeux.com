@@ -59,12 +59,12 @@ export default function LayoutNavbar() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="col-start-6 tablet:col-start-9 laptop:col-start-12 col-span-2 w-auto border-x-yellow-100"
+          className="col-start-6 tablet:col-start-9 laptop:col-start-12 col-span-2 border-x-yellow-100"
           onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
           onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
           onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
         >
-          <p className="pb-5 justify-self-end w-auto bg-orange-600">Menu</p>
+          <p className="pb-5 text-right w-auto bg-orange-600">Menu</p>
           <motion.div
             initial={{ y: -20, opacity: 0, display: "none" }}
             animate={
@@ -73,7 +73,7 @@ export default function LayoutNavbar() {
                 : { y: -20, opacity: 0, display: "none" }
             }
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={`flex flex-col text-[#CECECE] items-end justify-self-end gap-2 w-auto bg-teal-600`}
+            className={`flex flex-col text-[#CECECE] items-end gap-2 w-auto bg-teal-600`}
           >
             <Link href="/stillLife" className="hover:text-black">
               Still Life
