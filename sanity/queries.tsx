@@ -33,13 +33,13 @@ export async function getAllStillLife(): Promise<StillLifeType[]> {
 
 export const STILLLIFE_SLUG_QUERY = defineQuery(`
   {
-  "stillLifeProject": *[
+  "stillLifeCurrentSlug": *[
     _type == "stillLife" &&
     slug.current == $slug
 ][0]{
   ...,
 },
-  "stillLifeProjectArray": *[
+  "stillLifeAllProject": *[
   _type == "stillLife"
 ] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}
 }
@@ -50,7 +50,7 @@ export async function getStillLifeSlug({
   params: { slug: string };
 }): Promise<{
   stillLifeCurrentSlug: StillLifeType;
-  stillLifeProjectArray: StillLifeType[];
+  stillLifeAllProject: StillLifeType[];
 }> {
   const { data } = await sanityFetch({
     query: STILLLIFE_SLUG_QUERY,

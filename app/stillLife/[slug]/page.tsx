@@ -7,18 +7,14 @@ export default async function stillLifeSlug({
 }: {
   params: { slug: string };
 }) {
-  if (!params.slug) {
-    notFound();
-  }
   const data = await getStillLifeSlug({ params });
   if (!data) notFound();
 
-  console.log(data);
-  const { stillLifeCurrentSlug, stillLifeProjectArray } = data;
+  const { stillLifeCurrentSlug, stillLifeAllProject } = data;
   return (
     <StillLifeSlugComponent
       stillLifeCurrentSlug={stillLifeCurrentSlug}
-      stillLifeProjectArray={stillLifeProjectArray}
+      stillLifeAllProject={stillLifeAllProject}
     />
   );
 }

@@ -9,25 +9,25 @@ import CarouselNavigation from "../carousel/navigation";
 
 interface StillLifeSlugProps {
   stillLifeCurrentSlug: StillLife;
-  stillLifeProjectArray: StillLife[];
+  stillLifeAllProject: StillLife[];
 }
 
 export default function StillLifeSlugComponent({
   stillLifeCurrentSlug,
-  stillLifeProjectArray,
+  stillLifeAllProject,
 }: StillLifeSlugProps) {
-  //   const projectsArray = Array.isArray(stillLifeProjectArray)
-  //     ? stillLifeProjectArray
-  //     : [stillLifeProjectArray];
+  const stillLifeAllProjectArray = Array.isArray(stillLifeAllProject)
+    ? stillLifeAllProject
+    : [stillLifeAllProject];
 
   const router = useRouter();
-  const currentProjectIndex = stillLifeProjectArray.findIndex(
+  const currentProjectIndex = stillLifeAllProjectArray.findIndex(
     (p) => p.slug.current === stillLifeCurrentSlug?.slug.current
   );
 
-  const stillLifeCurrentProject = stillLifeProjectArray[currentProjectIndex];
+  const stillLifeCurrentProject = stillLifeAllProjectArray[currentProjectIndex];
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-
+  console.log(stillLifeCurrentProject);
   // Preloading Img
   const preloadingKey = useMemo(() => {
     if (!stillLifeCurrentProject?.gallery) return;
@@ -52,8 +52,8 @@ export default function StillLifeSlugComponent({
   const nextImage = () => {
     if (currentImageIndex === stillLifeCurrentProject.gallery.length - 1) {
       const nextProject =
-        stillLifeProjectArray[
-          (currentProjectIndex + 1) % stillLifeProjectArray.length
+        stillLifeAllProjectArray[
+          (currentProjectIndex + 1) % stillLifeAllProjectArray.length
         ];
       router.push(`/stillLife/${nextProject.slug.current}`);
     } else {
@@ -66,9 +66,9 @@ export default function StillLifeSlugComponent({
   const prevImage = () => {
     if (currentImageIndex === 0) {
       const prevProject =
-        stillLifeProjectArray[
-          (currentImageIndex - 1 + stillLifeProjectArray.length) %
-            stillLifeProjectArray.length
+        stillLifeAllProjectArray[
+          (currentImageIndex - 1 + stillLifeAllProjectArray.length) %
+            stillLifeAllProjectArray.length
         ];
       router.push(`/stillLife/${prevProject.slug.current}`);
     } else {
