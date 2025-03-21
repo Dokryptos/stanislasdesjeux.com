@@ -23,9 +23,39 @@ export const STILLLIFE_QUERY = defineQuery(`*[
   _type == "stillLife"
 ] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}`);
 
-// Fonction pour récupérer les projets (Serveur)
 export async function getAllStillLife(): Promise<StillLifeType[]> {
   const { data } = await sanityFetch({ query: STILLLIFE_QUERY });
+  if (!data) {
+    notFound();
+  }
+  return data;
+}
+
+export const STILLLIFE_SLUG_QUERY = defineQuery(`
+  {
+  "stillLifeProject": *[
+    _type == "stillLife" &&
+    slug.current == $slug
+][0]{
+  ...,
+},
+  "stillLifeProjectArray": *[
+  _type == "stillLife"
+] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}
+}
+`);
+export async function getStillLifeSlug({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<{
+  stillLifeCurrentSlug: StillLifeType;
+  stillLifeProjectArray: StillLifeType[];
+}> {
+  const { data } = await sanityFetch({
+    query: STILLLIFE_SLUG_QUERY,
+    params: { slug: params.slug },
+  });
   if (!data) {
     notFound();
   }
