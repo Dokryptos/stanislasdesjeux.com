@@ -46,7 +46,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2, duration: 0.5 }}
+              transition={{ delay: 4, duration: 0.5 }}
               className="pt-2 text-[10px]"
             >
               {homeProject.title}
