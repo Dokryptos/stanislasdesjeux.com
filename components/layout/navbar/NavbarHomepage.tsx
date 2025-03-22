@@ -54,8 +54,8 @@ export default function NavbarHomepage() {
               animate={{ width: logoSize.normal }}
               transition={{
                 delay: 1,
-                duration: 1,
-                ease: [0.16, 0.93, 0.2, 0.8],
+                duration: 0.8,
+                ease: [0.41, 0.01, 0.2, 1],
               }}
             >
               <Link href="/">
