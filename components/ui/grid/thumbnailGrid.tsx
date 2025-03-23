@@ -85,7 +85,7 @@ export default function ThumbnailGrid({
         const position = positions[i] || { row: 1, col: 1 };
         return (
           <motion.div
-            key={i}
+            key={image.asset._ref}
             custom={i}
             style={{
               gridRow: position.row,

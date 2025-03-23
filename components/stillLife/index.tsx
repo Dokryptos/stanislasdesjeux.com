@@ -38,42 +38,45 @@ export default function StillLifeComponent({
       <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 ">
         {stillLifeData.map((data: StillLifeType, i: number) => {
           return (
-            <motion.div
-              key={data._id}
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={listVariantAnimation}
-              className="flex items-center  laptop:hover:text-black"
-              onMouseEnter={() => {
-                setHoveredProject(i);
-              }}
-              onMouseLeave={() => setHoveredProject(null)}
-            >
-              {hoveredProject === i && (
-                <div className="text-[10px] laptop:pr-1 z-20 desktop:pr-2 hidden laptop:block">
-                  {data?.categorie}
-                </div>
-              )}
+            <>
               <Link href={`/stillLife/${data.slug.current}`}>
-                <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black ">
-                  {data.title}
-                </p>
-              </Link>
-              {(hoveredProject === i || isMobileTablet) && (
-                <div className="text-[10px] pl-1 z-20 desktop:p-2 font-ppFragment">
-                  {data?.gallery && data.gallery.length ? (
-                    data.gallery.length <= 10 ? (
-                      <>0{data.gallery.length}</>
-                    ) : (
-                      <>{data.gallery.length}</>
-                    )
-                  ) : (
-                    <>00</>
+                <motion.div
+                  key={data._id}
+                  custom={i}
+                  initial="hidden"
+                  animate="visible"
+                  variants={listVariantAnimation}
+                  className="relative flex items-center"
+                  onMouseEnter={() => {
+                    setHoveredProject(i);
+                  }}
+                  onMouseLeave={() => setHoveredProject(null)}
+                >
+                  {hoveredProject === i && (
+                    <div className="absolute right-full text-[10px] laptop:pr-1 z-20 desktop:pr-2 hidden laptop:block">
+                      {data?.categorie}
+                    </div>
                   )}
-                </div>
-              )}
-            </motion.div>
+                  <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black ">
+                    {data.title}
+                  </p>
+
+                  {(hoveredProject === i || isMobileTablet) && (
+                    <div className="absolute left-full text-[10px] pl-1 z-20 desktop:p-2 font-ppFragment">
+                      {data?.gallery && data.gallery.length ? (
+                        data.gallery.length <= 10 ? (
+                          <>0{data.gallery.length}</>
+                        ) : (
+                          <>{data.gallery.length}</>
+                        )
+                      ) : (
+                        <>00</>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
+              </Link>
+            </>
           );
         })}
       </div>
