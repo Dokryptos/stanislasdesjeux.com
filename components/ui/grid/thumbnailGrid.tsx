@@ -13,50 +13,50 @@ export default function ThumbnailGrid({
   thumbnails,
   projectId,
 }: StillLifeThumbnailGridProps) {
-  const [positions, setPositions] = useState<{ row: number; col: number }[]>(
-    []
-  );
+  const [positions, setPositions] = useState<
+    { row: number; col: number; height: number }[]
+  >([]);
 
   const layouts = [
     [
-      { row: 1, col: 2 },
-      { row: 2, col: 4 },
-      { row: 4, col: 3 },
+      { row: 1, col: 2, height: 300 },
+      { row: 2, col: 4, height: 220 },
+      { row: 4, col: 3, height: 150 },
     ],
     [
-      { row: 2, col: 1 },
-      { row: 3, col: 3 },
-      { row: 4, col: 5 },
+      { row: 2, col: 1, height: 300 },
+      { row: 3, col: 3, height: 300 },
+      { row: 4, col: 5, height: 300 },
     ],
     [
-      { row: 1, col: 4 },
-      { row: 3, col: 2 },
-      { row: 4, col: 1 },
+      { row: 1, col: 4, height: 300 },
+      { row: 3, col: 2, height: 300 },
+      { row: 4, col: 1, height: 300 },
     ],
     [
-      { row: 2, col: 3 },
-      { row: 3, col: 5 },
-      { row: 4, col: 2 },
+      { row: 2, col: 3, height: 300 },
+      { row: 3, col: 5, height: 300 },
+      { row: 4, col: 2, height: 300 },
     ],
     [
-      { row: 1, col: 1 },
-      { row: 2, col: 5 },
-      { row: 3, col: 4 },
+      { row: 1, col: 1, height: 300 },
+      { row: 2, col: 5, height: 300 },
+      { row: 3, col: 4, height: 300 },
     ],
     [
-      { row: 1, col: 3 },
-      { row: 3, col: 1 },
-      { row: 4, col: 5 },
+      { row: 1, col: 3, height: 300 },
+      { row: 3, col: 1, height: 300 },
+      { row: 4, col: 5, height: 300 },
     ],
     [
-      { row: 2, col: 2 },
-      { row: 3, col: 4 },
-      { row: 4, col: 3 },
+      { row: 2, col: 2, height: 300 },
+      { row: 3, col: 4, height: 300 },
+      { row: 4, col: 3, height: 300 },
     ],
     [
-      { row: 1, col: 5 },
-      { row: 2, col: 3 },
-      { row: 4, col: 1 },
+      { row: 1, col: 5, height: 300 },
+      { row: 2, col: 3, height: 300 },
+      { row: 4, col: 1, height: 300 },
     ],
   ];
 
@@ -73,7 +73,6 @@ export default function ThumbnailGrid({
   useEffect(() => {
     if (thumbnails.length > 0) {
       const layout = layouts[Math.floor(Math.random() * layouts.length)];
-      console.log(layout);
       setPositions(layout);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,6 +89,8 @@ export default function ThumbnailGrid({
             style={{
               gridRow: position.row,
               gridColumn: position.col,
+              height: `${position.height}px`,
+              width: `auto`,
             }}
             variants={thumbnailVariantAnimation}
             initial="hidden"
@@ -100,7 +101,7 @@ export default function ThumbnailGrid({
             <UIImageSanity
               asset={image.asset}
               alt={`image thumbnail ${i}`}
-              className="h-max-[300px] w-auto"
+              className="h-full w-auto"
             />
           </motion.div>
         );
