@@ -7,11 +7,13 @@ import { useState, useEffect } from "react";
 interface StillLifeThumbnailGridProps {
   thumbnails: SanityImage[];
   projectId: string;
+  isExiting: boolean;
 }
 
 export default function ThumbnailGrid({
   thumbnails,
   projectId,
+  isExiting,
 }: StillLifeThumbnailGridProps) {
   const [positions, setPositions] = useState<
     { top: string; left: string; height: string }[]
@@ -24,7 +26,7 @@ export default function ThumbnailGrid({
       scale: 1.1,
       transition: { delay: i * 0.1, duration: 0.4 },
     }),
-    exit: { opacity: 0, scale: 1.3 },
+    exit: { opacity: 0, scale: 1.3, transition: { duration: 0.5 } },
   };
 
   const layouts = [
@@ -90,7 +92,7 @@ export default function ThumbnailGrid({
             variants={thumbnailVariantAnimation}
             initial="hidden"
             animate="visible"
-            exit="exit"
+            exit={isExiting ? "exit" : undefined}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <UIImageSanity

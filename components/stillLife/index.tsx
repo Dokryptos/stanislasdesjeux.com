@@ -14,6 +14,10 @@ export default function StillLifeComponent({
 }: StillLifeDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [isMobileTablet, setIsMobileTablet] = useState(false);
+  const [lastHoveredProject, setLastHoveredProject] = useState<number | null>(
+    null
+  );
+  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,6 +29,19 @@ export default function StillLifeComponent({
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (hoveredProject !== null) {
+      setLastHoveredProject(hoveredProject);
+      setIsExiting(false);
+    } else if (lastHoveredProject !== null) {
+      setIsExiting(true);
+      setTimeout(() => {
+        setLastHoveredProject(null);
+        setIsExiting(false);
+      }, 500);
+    }
+  }, [hoveredProject]);
 
   return (
     <div className="relative">
@@ -51,6 +68,7 @@ export default function StillLifeComponent({
           <ThumbnailGrid
             thumbnails={stillLifeData[hoveredProject]?.thumbnail}
             projectId={stillLifeData[hoveredProject]?._id}
+            isExiting={isExiting}
           />
         )}
       </div>
