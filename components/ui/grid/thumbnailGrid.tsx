@@ -14,51 +14,8 @@ export default function ThumbnailGrid({
   projectId,
 }: StillLifeThumbnailGridProps) {
   const [positions, setPositions] = useState<
-    { row: number; col: number; height: number }[]
+    { top: string; left: string; height: string }[]
   >([]);
-
-  const layouts = [
-    [
-      { row: 1, col: 2, height: 300 },
-      { row: 2, col: 4, height: 220 },
-      { row: 4, col: 3, height: 150 },
-    ],
-    [
-      { row: 2, col: 1, height: 300 },
-      { row: 3, col: 3, height: 300 },
-      { row: 4, col: 5, height: 300 },
-    ],
-    [
-      { row: 1, col: 4, height: 300 },
-      { row: 3, col: 2, height: 300 },
-      { row: 4, col: 1, height: 300 },
-    ],
-    [
-      { row: 2, col: 3, height: 300 },
-      { row: 3, col: 5, height: 300 },
-      { row: 4, col: 2, height: 300 },
-    ],
-    [
-      { row: 1, col: 1, height: 300 },
-      { row: 2, col: 5, height: 300 },
-      { row: 3, col: 4, height: 300 },
-    ],
-    [
-      { row: 1, col: 3, height: 300 },
-      { row: 3, col: 1, height: 300 },
-      { row: 4, col: 5, height: 300 },
-    ],
-    [
-      { row: 2, col: 2, height: 300 },
-      { row: 3, col: 4, height: 300 },
-      { row: 4, col: 3, height: 300 },
-    ],
-    [
-      { row: 1, col: 5, height: 300 },
-      { row: 2, col: 3, height: 300 },
-      { row: 4, col: 1, height: 300 },
-    ],
-  ];
 
   const thumbnailVariantAnimation = {
     hidden: { opacity: 0, scale: 0.5 },
@@ -70,27 +27,65 @@ export default function ThumbnailGrid({
     exit: { opacity: 0, scale: 1.3 },
   };
 
+  const layouts = [
+    [
+      { top: "15%", left: "20%", height: "40%" },
+      { top: "70%", left: "20%", height: "30%" },
+      { top: "30%", left: "70%", height: "50%" },
+    ],
+    [
+      { top: "10%", left: "70%", height: "40%" },
+      { top: "20%", left: "10%", height: "55%" },
+      { top: "60%", left: "80%", height: "35%" },
+    ],
+    [
+      { top: "10%", left: "15%", height: "40%" },
+      { top: "40%", left: "70%", height: "50%" },
+      { top: "65%", left: "25%", height: "30%" },
+    ],
+    [
+      { top: "50%", left: "5%", height: "40%" },
+      { top: "10%", left: "40%", height: "35%" },
+      { top: "40%", left: "70%", height: "50%" },
+    ],
+    [
+      { top: "10%", left: "20%", height: "50%" },
+      { top: "70%", left: "10%", height: "25%" },
+      { top: "60%", left: "80%", height: "40%" },
+    ],
+    [
+      { top: "20%", left: "80%", height: "30%" },
+      { top: "70%", left: "90%", height: "20%" },
+      { top: "30%", left: "10%", height: "45%" },
+    ],
+  ];
+
+  const generateRandomLayout = () => {
+    const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
+    setPositions(randomLayout);
+  };
+
   useEffect(() => {
-    if (thumbnails.length > 0) {
-      const layout = layouts[Math.floor(Math.random() * layouts.length)];
-      setPositions(layout);
+    if (thumbnails.length === 3) {
+      generateRandomLayout();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId, thumbnails.length]);
-
   return (
-    <div className="grid grid-cols-5 grid-rows-4 w-full h-full gap-20">
+    <div className="relative w-full h-full">
       {thumbnails.map((image: SanityImage, i: number) => {
-        const position = positions[i] || { row: 1, col: 1 };
+        const position = positions[i] || { top: "0%", left: "0%" };
+        console.log(position);
         return (
           <motion.div
             key={image.asset._ref}
             custom={i}
             style={{
-              gridRow: position.row,
-              gridColumn: position.col,
-              height: `${position.height}px`,
-              width: `auto`,
+              position: "absolute",
+              top: position.top,
+              left: position.left,
+              height: position.height,
+              transform: "translate(-50%, -50%)",
             }}
             variants={thumbnailVariantAnimation}
             initial="hidden"
@@ -101,7 +96,7 @@ export default function ThumbnailGrid({
             <UIImageSanity
               asset={image.asset}
               alt={`image thumbnail ${i}`}
-              className="h-full w-auto"
+              className=" w-full h-full object-contain"
             />
           </motion.div>
         );
