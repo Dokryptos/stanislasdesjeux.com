@@ -79,10 +79,10 @@ export default function StillLifeSlugComponent({
   return (
     <div className="">
       <Grid className="w-full h-full overflow-hidden flex justify-center">
-        <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-start-5 laptop:col-span-4 flex items-center w-full h-dvh">
+        <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-start-5 laptop:col-span-4 flex items-center w-full h-dvh pb-[60px] pt-[60px]">
           <UIImageSanity
             asset={
-              stillLifeCurrentProject?.gallery[currentImageIndex].image.asset
+              stillLifeCurrentProject.gallery[currentImageIndex].image.asset
                 ._ref
             }
             alt={`Image ${currentImageIndex} du project ${stillLifeCurrentProject?.title}`}
@@ -90,23 +90,26 @@ export default function StillLifeSlugComponent({
           />
         </div>
         <CarouselNavigation onPrev={prevImage} onNext={nextImage} />
-        <div className="text-[12px] fixed bottom-5 col-start-1 col-span-6 flex justify-between w-screen">
-          <p>Prev</p>
-          {stillLifeCurrentProject?.title === "Motion" ||
-          stillLifeCurrentProject?.title === "Archives" ? (
-            <p>
-              {stillLifeCurrentProject?.title} |{" "}
-              {stillLifeCurrentProject.gallery[currentImageIndex].imageTitle}
-            </p>
-          ) : (
-            <p>
-              {stillLifeCurrentProject?.title} |{" "}
-              {stillLifeCurrentProject.categorie}
-            </p>
-          )}
-          <p>Next</p>
-        </div>
       </Grid>
+      <div className="text-[12px] absolute bottom-5 col-start-1 col-span-5 flex justify-between w-full pr-5 pl-5 tablet:pr-10 tablet:pl-10">
+        <p>Prev</p>
+        {stillLifeCurrentProject.title === "Motion" ||
+        stillLifeCurrentProject.title === "Archives" ? (
+          <p>
+            {stillLifeCurrentProject.title} |{" "}
+            {stillLifeCurrentProject.gallery[currentImageIndex].imageTitle}
+          </p>
+        ) : (
+          <div className="flex items-center">
+            {stillLifeCurrentProject.title} |{" "}
+            {stillLifeCurrentProject.categorie}
+            <p className="text-[7px] pl-1">
+              ( {stillLifeCurrentProject.gallery.length} )
+            </p>
+          </div>
+        )}
+        <p>Next</p>
+      </div>
     </div>
   );
 }
