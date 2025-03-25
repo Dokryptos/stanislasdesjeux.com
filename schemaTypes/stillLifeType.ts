@@ -76,32 +76,28 @@ export const stillLifeType = defineType({
       title: "gallery",
       type: "array",
       description:
-        "Select all the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image",
+        "Select all the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image or 1 Link vimeo not both",
       validation: (rule) =>
         rule.required().error(`Required to generate a page on the website`),
       of: [
         defineArrayMember({
           type: "object",
           name: "galleryItem",
+          description: "Need 1 vimeo link or 1 image for complmete the project",
           fields: [
             defineField({
-              name: "media",
-              title: "Image or Video",
-              type: "array", // array pour contenir soit des images soit des vidéos
-              of: [
-                defineArrayMember({
-                  type: "image",
-                  name: "image",
-                  options: { hotspot: true },
-                }),
-              ],
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+              description: "Image related to the array of project",
             }),
             defineField({
               name: "imageTitle",
               title: "Title of the Image or Video",
               type: "string",
               description:
-                "Title related to the media (Visible only for Motion & Archives).",
+                "Title related to the media (Visible on the website only for Motion & Archives).",
               validation: (Rule) =>
                 Rule.custom((value, context) => {
                   const { document } = context;
@@ -116,7 +112,24 @@ export const stillLifeType = defineType({
                   return true;
                 }),
             }),
+            defineField({
+              name: "urlVimeo",
+              title: "UrlVimeo",
+              type: "string",
+              description:
+                "Url related to the Vimeo player inside array of project.",
+            }),
           ],
+          validation: (Rule) =>
+            Rule.custom((fields) => {
+              if (fields?.image && fields?.urlVimeo) {
+                return "You can only have image OR a Vimeo link, not both";
+              }
+              if (!fields?.image && !fields?.urlVimeo) {
+                return "You must provide either an image or a Vimeo link.";
+              }
+              return true;
+            }),
         }),
       ],
     }),
