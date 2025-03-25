@@ -77,7 +77,6 @@ export default function ThumbnailGrid({
     <div className="relative w-full h-full">
       {thumbnails.map((image: SanityImage, i: number) => {
         const position = positions[i] || { top: "0%", left: "0%" };
-        console.log(position);
         return (
           <motion.div
             key={image.asset._ref}

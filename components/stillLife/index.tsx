@@ -49,7 +49,7 @@ export default function StillLifeComponent({
       <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 ">
         {stillLifeData.map((data: StillLifeType, i: number) => {
           return (
-            <>
+            <div key={data._id}>
               <Link href={`/stillLife/${data.slug.current}`}>
                 <ProjectList
                   key={data._id}
@@ -60,7 +60,7 @@ export default function StillLifeComponent({
                   isMobileTablet={isMobileTablet}
                 />
               </Link>
-            </>
+            </div>
           );
         })}
       </div>

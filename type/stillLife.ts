@@ -8,6 +8,11 @@ export interface SanityImage {
     _type: "reference";
   };
 }
+export interface SanityGallery {
+  image: SanityImage;
+  imageTitle: string;
+  urlVimeo: string;
+}
 
 export default interface StillLife {
   _id: string;
@@ -17,5 +22,5 @@ export default interface StillLife {
   categorie: string;
   description: string;
   thumbnail: SanityImage[];
-  gallery: SanityImage[];
+  gallery: SanityGallery[];
 }

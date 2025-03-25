@@ -27,14 +27,14 @@ export default function StillLifeSlugComponent({
 
   const stillLifeCurrentProject = stillLifeAllProjectArray[currentProjectIndex];
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  console.log(stillLifeCurrentProject);
+  console.log(stillLifeCurrentProject.gallery);
   // Preloading Img
   const preloadingKey = useMemo(() => {
     if (!stillLifeCurrentProject?.gallery) return;
 
     return stillLifeCurrentProject.gallery
       .map((asset) => {
-        return urlForImage(asset).url();
+        return urlForImage(asset.image.asset).url();
       })
       .join(".");
   }, [stillLifeCurrentProject?.gallery]);
@@ -44,7 +44,7 @@ export default function StillLifeSlugComponent({
 
     stillLifeCurrentProject.gallery.forEach((asset) => {
       const img = new Image();
-      img.src = urlForImage(asset).url();
+      img.src = urlForImage(asset.image.asset).url();
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preloadingKey]);
@@ -67,7 +67,7 @@ export default function StillLifeSlugComponent({
     if (currentImageIndex === 0) {
       const prevProject =
         stillLifeAllProjectArray[
-          (currentImageIndex - 1 + stillLifeAllProjectArray.length) %
+          (currentProjectIndex - 1 + stillLifeAllProjectArray.length) %
             stillLifeAllProjectArray.length
         ];
       router.push(`/stillLife/${prevProject.slug.current}`);
@@ -77,16 +77,35 @@ export default function StillLifeSlugComponent({
   };
 
   return (
-    <div>
-      <Grid className="w-full h-dvh overflow-hidden">
-        <div>
+    <div className="">
+      <Grid className="w-full h-full overflow-hidden flex justify-center">
+        <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-start-5 laptop:col-span-4 flex items-center w-full h-dvh">
           <UIImageSanity
-            asset={stillLifeCurrentProject?.gallery[currentImageIndex].asset}
+            asset={
+              stillLifeCurrentProject?.gallery[currentImageIndex].image.asset
+                ._ref
+            }
             alt={`Image ${currentImageIndex} du project ${stillLifeCurrentProject?.title}`}
+            className="object-contain h-full w-full "
           />
         </div>
         <CarouselNavigation onPrev={prevImage} onNext={nextImage} />
-        <div></div>
+        <div className="text-[12px] fixed bottom-5 col-start-1 col-span-6 flex justify-between w-screen">
+          <p>Prev</p>
+          {stillLifeCurrentProject?.title === "Motion" ||
+          stillLifeCurrentProject?.title === "Archives" ? (
+            <p>
+              {stillLifeCurrentProject?.title} |{" "}
+              {stillLifeCurrentProject.gallery[currentImageIndex].imageTitle}
+            </p>
+          ) : (
+            <p>
+              {stillLifeCurrentProject?.title} |{" "}
+              {stillLifeCurrentProject.categorie}
+            </p>
+          )}
+          <p>Next</p>
+        </div>
       </Grid>
     </div>
   );
