@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import ThumbnailGrid from "../ui/grid/thumbnailGrid";
 import ProjectList from "../ui/list/projectList";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface StillLifeDataProps {
   stillLifeData: StillLifeType[];
@@ -63,15 +65,22 @@ export default function StillLifeComponent({
           );
         })}
       </div>
-      <div className="hidden laptop:block fixed top-0 left-0 right-0 bottom-0 z-0">
+      <AnimatePresence>
         {hoveredProject !== null && (
-          <ThumbnailGrid
-            thumbnails={stillLifeData[hoveredProject]?.thumbnail}
-            projectId={stillLifeData[hoveredProject]?._id}
-            isExiting={isExiting}
-          />
+          <motion.div
+            className="hidden laptop:block fixed top-0 left-0 right-0 bottom-0 z-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.2, transition: { duration: 0.3 } }}
+          >
+            <ThumbnailGrid
+              thumbnails={stillLifeData[hoveredProject]?.thumbnail}
+              projectId={stillLifeData[hoveredProject]?._id}
+              isExiting={isExiting}
+            />
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   );
 }

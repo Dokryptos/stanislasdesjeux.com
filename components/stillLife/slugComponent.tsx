@@ -93,22 +93,24 @@ export default function StillLifeSlugComponent({
       </Grid>
       <div className="text-[15px] absolute bottom-5 col-start-1 col-span-5 flex justify-between laptop:justify-center w-full pr-5 pl-5 tablet:pr-10 tablet:pl-10">
         <p className="block laptop:hidden">Prev</p>
-        {stillLifeCurrentProject.title === "Motion" ||
-        stillLifeCurrentProject.title === "Archives" ? (
-          <p>
-            {stillLifeCurrentProject.title} |{" "}
-            {stillLifeCurrentProject.gallery[currentImageIndex].imageTitle}
-          </p>
-        ) : (
-          <div className="flex items-center">
-            {stillLifeCurrentProject.title}{" "}
-            {stillLifeCurrentProject.categorie !== null &&
-              `| ${stillLifeCurrentProject.categorie}`}
-            <p className="text-[10px] pl-1">
-              ({stillLifeCurrentProject.gallery.length})
+        <div className="flex items-center">
+          <p className="pr-1">{stillLifeCurrentProject.title}</p>
+          {stillLifeCurrentProject.title === "Motion" ||
+          stillLifeCurrentProject.title === "Archives" ? (
+            <p>
+              {`| ${stillLifeCurrentProject.gallery[currentImageIndex].imageTitle}`}
             </p>
-          </div>
-        )}
+          ) : (
+            <p>
+              {stillLifeCurrentProject.categorie !== null &&
+                `| ${stillLifeCurrentProject.categorie}`}
+            </p>
+          )}
+          <p className="text-[10px] pl-1">
+            ({stillLifeCurrentProject.gallery.length})
+          </p>
+        </div>
+
         <p className="block laptop:hidden">Next</p>
       </div>
     </div>
