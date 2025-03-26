@@ -21,5 +21,5 @@ export default interface Film {
   slug: Slug;
   categorie?: string;
   thumbnail: SanityImage[];
-  gallery: SanityGallery[];
+  gallery: SanityImage[];
 }

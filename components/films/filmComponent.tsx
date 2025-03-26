@@ -67,8 +67,8 @@ export default function FilmComponent({ filmData }: FilmDataProps) {
         {hoveredProject !== null && (
           <motion.div
             className="hidden laptop:block fixed top-0 left-0 right-0 bottom-0 z-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.2, transition: { duration: 0.3 } }}
           >
             <ThumbnailGrid

@@ -14,7 +14,7 @@ interface ProjectType {
   gallery: {
     urlVimeo: string;
     image?: { asset: { _ref: string } };
-    imagetitle?: string;
+    imageTitle?: string;
   }[];
   categorie?: string;
 }
@@ -109,12 +109,14 @@ export default function ProjectSlugComponent({
         <p className="block laptop:hidden">Prev</p>
         <div className="flex items-center">
           <p className="pr-1">{projectCurrent.title}</p>
-
-          {(typeList === "stillLife" || typeList === "films") &&
-            projectCurrent.categorie && (
-              <p>{`| ${projectCurrent.categorie}`}</p>
-            )}
-
+          {projectCurrent.title === "Motion" ||
+          projectCurrent.title === "Archives" ? (
+            <p>{`| ${projectCurrent.gallery[currentMediaIndex]?.imageTitle}`}</p>
+          ) : (
+            <p>
+              {projectCurrent.categorie ? `| ${projectCurrent.categorie}` : ""}
+            </p>
+          )}
           <p className="text-[10px] pl-1">({projectCurrent.gallery.length})</p>
         </div>
 

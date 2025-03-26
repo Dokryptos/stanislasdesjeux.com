@@ -20,13 +20,13 @@ export default function ThumbnailGrid({
   >([]);
 
   const thumbnailVariantAnimation = {
-    hidden: { opacity: 0, scale: 0.5 },
+    hidden: { opacity: 0, scale: 0.4 },
     visible: (i: number) => ({
       opacity: 1,
       scale: 1.1,
       transition: { delay: 0.3 + i * 0.1, duration: 0.4 },
     }),
-    exit: { opacity: 0, scale: 1.2, transition: { duration: 0.3 } },
+    exit: { opacity: 0, scale: 1.2, transition: { duration: 0.2 } },
   };
 
   const layouts = [

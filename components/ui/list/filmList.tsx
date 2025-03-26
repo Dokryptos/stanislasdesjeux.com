@@ -50,9 +50,9 @@ export default function StillLifeList({
         <div className="absolute left-full text-[10px] pl-1 z-20 desktop:p-2 font-ppFragment">
           {data?.gallery && data.gallery.length ? (
             data.gallery.length <= 10 ? (
-              <>0{data.gallery.length}</>
+              <>(0{data.gallery.length})</>
             ) : (
-              <>{data.gallery.length}</>
+              <>({data.gallery.length})</>
             )
           ) : (
             <>00</>
