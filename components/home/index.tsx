@@ -43,7 +43,7 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
     );
   });
   return (
-    <div className="w-full h-dvh flex items-center justify-center pt-[50px]">
+    <div className="w-full h-dvh flex items-center justify-center pt-[50px] tablet:pt-0">
       {/* Mobile */}
       <Grid className="tablet:hidden">
         {homeData.map((homeProject: HomeImgType, i: number) => (

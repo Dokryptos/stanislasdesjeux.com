@@ -41,8 +41,7 @@ export default function StillLifeComponent({
         setIsExiting(false);
       }, 500);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hoveredProject]);
+  }, [hoveredProject, lastHoveredProject]);
 
   return (
     <div className="relative">

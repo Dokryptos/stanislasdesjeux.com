@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { UIImageSanity } from "../image/sanity";
 import { SanityImage } from "@/type/stillLife";
 import { useState, useEffect } from "react";
@@ -24,9 +24,9 @@ export default function ThumbnailGrid({
     visible: (i: number) => ({
       opacity: 1,
       scale: 1.1,
-      transition: { delay: i * 0.1, duration: 0.4 },
+      transition: { delay: 0.3 + i * 0.1, duration: 0.4 },
     }),
-    exit: { opacity: 0, scale: 1.3, transition: { duration: 0.5 } },
+    exit: { opacity: 0, scale: 1.2, transition: { duration: 0.3 } },
   };
 
   const layouts = [
@@ -75,33 +75,36 @@ export default function ThumbnailGrid({
   }, [projectId, thumbnails.length]);
   return (
     <div className="relative w-full h-full">
-      {thumbnails.map((image: SanityImage, i: number) => {
-        const position = positions[i] || { top: "0%", left: "0%" };
-        return (
-          <motion.div
-            key={image.asset._ref}
-            custom={i}
-            style={{
-              position: "absolute",
-              top: position.top,
-              left: position.left,
-              height: position.height,
-              transform: "translate(-50%, -50%)",
-            }}
-            variants={thumbnailVariantAnimation}
-            initial="hidden"
-            animate="visible"
-            exit={isExiting ? "exit" : undefined}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <UIImageSanity
-              asset={image.asset}
-              alt={`image thumbnail ${i}`}
-              className=" w-full h-full object-contain"
-            />
-          </motion.div>
-        );
-      })}
+      <AnimatePresence>
+        {thumbnails.map((image: SanityImage, i: number) => {
+          const position = positions[i] || { top: "0%", left: "0%" };
+          return (
+            <motion.div
+              key={image.asset._ref}
+              custom={i}
+              style={{
+                position: "absolute",
+                top: position.top,
+                left: position.left,
+                height: position.height,
+                transform: "translate(-50%, -50%)",
+              }}
+              variants={thumbnailVariantAnimation}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              onAnimationComplete={() => console.log(isExiting)}
+            >
+              <UIImageSanity
+                asset={image.asset}
+                alt={`image thumbnail ${i}`}
+                className=" w-full h-full object-contain"
+              />
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
     </div>
   );
 }
