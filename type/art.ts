@@ -14,7 +14,7 @@ export default interface Art {
   title: string;
   shortTitle?: string;
   slug: Slug;
-  thumbnail: SanityImage;
+  thumbnail: SanityImage[];
   gallery: SanityImage[];
-  description: string;
+  description: string[];
 }

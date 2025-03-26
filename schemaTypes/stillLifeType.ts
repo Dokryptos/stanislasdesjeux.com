@@ -53,7 +53,7 @@ export const stillLifeType = defineType({
       title: "Thumbnail",
       type: "array",
       description:
-        "Select all the image you want to render in the random list composition, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image",
+        "Select all the image you want to render in the random list composition, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 3 images",
       validation: (rule) =>
         rule
           .required()
@@ -115,9 +115,13 @@ export const stillLifeType = defineType({
             defineField({
               name: "urlVimeo",
               title: "UrlVimeo",
-              type: "string",
+              type: "url",
               description:
                 "Url related to the Vimeo player inside array of project.",
+              validation: (rule) =>
+                rule
+                  .uri({ scheme: ["http", "https"] })
+                  .error("Invalid Vimeo URL."),
             }),
           ],
           validation: (Rule) =>

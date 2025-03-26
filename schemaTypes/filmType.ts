@@ -45,23 +45,16 @@ export const filmType = defineType({
     defineField({
       name: "thumbnail",
       title: "Thumbnail",
-      type: "image",
-      validation: (rule) =>
-        rule.required().error(`Required to generate a page on the website`),
-      options: {
-        hotspot: true,
-      },
-      description:
-        "The first image use for the presentation of the project (Obligation)",
-    }),
-    defineField({
-      name: "gallery",
-      title: "gallery",
       type: "array",
       description:
-        "Select all the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image",
+        "Select all the image you want to render in the random list composition, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 3 images",
       validation: (rule) =>
-        rule.required().error(`Required to generate a page on the website`),
+        rule
+          .required()
+          .max(3)
+          .error(
+            `Required to generate a page on the website and maximum 3 image allowed for Thumnail`
+          ),
       of: [
         defineArrayMember({
           type: "image",
@@ -70,10 +63,52 @@ export const filmType = defineType({
             hotspot: true,
           },
         }),
-        // defineArrayMember({
-        //   type: "mux.video",
-        //   name: "video",
-        // }),
+      ],
+    }),
+    defineField({
+      name: "gallery",
+      title: "gallery",
+      type: "array",
+      description:
+        "Select all the image you want to render, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image or 1 Link vimeo not both",
+      validation: (rule) =>
+        rule.required().error(`Required to generate a page on the website`),
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "galleryItem",
+          description: "Need 1 vimeo link or 1 image for complmete the project",
+          fields: [
+            defineField({
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+              description: "Image related to the array of project",
+            }),
+            defineField({
+              name: "urlVimeo",
+              title: "UrlVimeo",
+              type: "url",
+              description:
+                "Url related to the Vimeo player inside array of project.",
+              validation: (rule) =>
+                rule
+                  .uri({ scheme: ["http", "https"] })
+                  .error("Invalid Vimeo URL."),
+            }),
+          ],
+          validation: (Rule) =>
+            Rule.custom((fields) => {
+              if (fields?.image && fields?.urlVimeo) {
+                return "You can only have image OR a Vimeo link, not both";
+              }
+              if (!fields?.image && !fields?.urlVimeo) {
+                return "You must provide either an image or a Vimeo link.";
+              }
+              return true;
+            }),
+        }),
       ],
     }),
   ],

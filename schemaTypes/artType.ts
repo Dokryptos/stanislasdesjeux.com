@@ -47,7 +47,7 @@ export const artType = defineType({
       title: "Thumbnail",
       type: "array",
       description:
-        "Select all the image you want to render in the random list composition, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image",
+        "Select all the image you want to render in the random list composition, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 3 images",
       validation: (rule) =>
         rule
           .required()
