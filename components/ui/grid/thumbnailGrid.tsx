@@ -63,8 +63,8 @@ export default function ThumbnailGrid({
   ];
 
   const generateRandomLayout = () => {
-    // const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
-    setPositions(layouts[5]);
+    const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
+    setPositions(randomLayout);
   };
 
   useEffect(() => {
