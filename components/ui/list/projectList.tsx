@@ -37,9 +37,9 @@ export default function ProjectList({
       }}
       onMouseLeave={() => setHoveredProject(null)}
     >
-      {hoveredProject === index && (
+      {hoveredProject === index && data.categorie !== null && (
         <div className="absolute right-full text-[10px] z-20 laptop:pr-1 desktop:pr-2 hidden laptop:block">
-          {`(${data?.categorie}`}
+          {`(${data?.categorie})`}
         </div>
       )}
       <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black mix-blend-difference">

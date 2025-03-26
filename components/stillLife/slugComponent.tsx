@@ -77,7 +77,7 @@ export default function StillLifeSlugComponent({
   };
 
   return (
-    <div className="">
+    <div>
       <Grid className="w-full h-full overflow-hidden flex justify-center">
         <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-start-5 laptop:col-span-4 flex items-center w-full h-dvh pb-[60px] pt-[60px]">
           <UIImageSanity
@@ -91,7 +91,7 @@ export default function StillLifeSlugComponent({
         </div>
         <CarouselNavigation onPrev={prevImage} onNext={nextImage} />
       </Grid>
-      <div className="text-[12px] absolute bottom-5 col-start-1 col-span-5 flex justify-between w-full pr-5 pl-5 tablet:pr-10 tablet:pl-10">
+      <div className="text-[15px] absolute bottom-5 col-start-1 col-span-5 flex justify-between w-full pr-5 pl-5 tablet:pr-10 tablet:pl-10">
         <p>Prev</p>
         {stillLifeCurrentProject.title === "Motion" ||
         stillLifeCurrentProject.title === "Archives" ? (
@@ -103,8 +103,8 @@ export default function StillLifeSlugComponent({
           <div className="flex items-center">
             {stillLifeCurrentProject.title} |{" "}
             {stillLifeCurrentProject.categorie}
-            <p className="text-[7px] pl-1">
-              ( {stillLifeCurrentProject.gallery.length} )
+            <p className="text-[10px] pl-1">
+              ({stillLifeCurrentProject.gallery.length})
             </p>
           </div>
         )}

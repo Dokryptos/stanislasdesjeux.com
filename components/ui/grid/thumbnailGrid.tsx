@@ -31,40 +31,40 @@ export default function ThumbnailGrid({
 
   const layouts = [
     [
-      { top: "15%", left: "20%", height: "40%" },
-      { top: "70%", left: "20%", height: "30%" },
-      { top: "30%", left: "70%", height: "50%" },
+      { top: "45%", left: "10%", height: "40%" },
+      { top: "0%", left: "60%", height: "30%" },
+      { top: "70%", left: "75%", height: "30%" },
     ],
     [
-      { top: "10%", left: "70%", height: "40%" },
-      { top: "20%", left: "10%", height: "55%" },
-      { top: "60%", left: "80%", height: "35%" },
+      { top: "5%", left: "20%", height: "35%" },
+      { top: "60%", left: "5%", height: "30%" },
+      { top: "40%", left: "85%", height: "40%" },
     ],
     [
-      { top: "10%", left: "15%", height: "40%" },
-      { top: "40%", left: "70%", height: "50%" },
-      { top: "65%", left: "25%", height: "30%" },
+      { top: "10%", left: "5%", height: "35%" },
+      { top: "30%", left: "70%", height: "45%" },
+      { top: "70%", left: "25%", height: "25%" },
     ],
     [
+      { top: "50%", left: "0%", height: "35%" },
+      { top: "0%", left: "25%", height: "35%" },
+      { top: "60%", left: "75%", height: "40%" },
+    ],
+    [
+      { top: "70%", left: "2%", height: "25%" },
+      { top: "0%", left: "25%", height: "40%" },
+      { top: "40%", left: "70%", height: "45%" },
+    ],
+    [
+      { top: "0%", left: "70%", height: "30%" },
+      { top: "50%", left: "75%", height: "40%" },
       { top: "50%", left: "5%", height: "40%" },
-      { top: "10%", left: "40%", height: "35%" },
-      { top: "40%", left: "70%", height: "50%" },
-    ],
-    [
-      { top: "10%", left: "20%", height: "50%" },
-      { top: "70%", left: "10%", height: "25%" },
-      { top: "60%", left: "80%", height: "40%" },
-    ],
-    [
-      { top: "20%", left: "80%", height: "30%" },
-      { top: "70%", left: "90%", height: "20%" },
-      { top: "30%", left: "10%", height: "45%" },
     ],
   ];
 
   const generateRandomLayout = () => {
-    const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
-    setPositions(randomLayout);
+    // const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
+    setPositions(layouts[5]);
   };
 
   useEffect(() => {
