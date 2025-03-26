@@ -33,6 +33,10 @@ export default {
         "pointer-fine": { raw: "(pointer: fine)" },
         "pointer-coarse": { raw: "(pointer: coarse)" },
       },
+      cursor: {
+        carrouselLeft: "url(/image/cursorLeftArrow.png), pointer",
+        carrouselRight: "url(/image/cursorRightArrow.png), pointer",
+      },
     },
   },
   plugins: [],

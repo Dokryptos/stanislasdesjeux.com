@@ -91,8 +91,8 @@ export default function StillLifeSlugComponent({
         </div>
         <CarouselNavigation onPrev={prevImage} onNext={nextImage} />
       </Grid>
-      <div className="text-[15px] absolute bottom-5 col-start-1 col-span-5 flex justify-between w-full pr-5 pl-5 tablet:pr-10 tablet:pl-10">
-        <p>Prev</p>
+      <div className="text-[15px] absolute bottom-5 col-start-1 col-span-5 flex justify-between laptop:justify-center w-full pr-5 pl-5 tablet:pr-10 tablet:pl-10">
+        <p className="block laptop:hidden">Prev</p>
         {stillLifeCurrentProject.title === "Motion" ||
         stillLifeCurrentProject.title === "Archives" ? (
           <p>
@@ -108,7 +108,7 @@ export default function StillLifeSlugComponent({
             </p>
           </div>
         )}
-        <p>Next</p>
+        <p className="block laptop:hidden">Next</p>
       </div>
     </div>
   );
