@@ -59,7 +59,7 @@ export default function NavbarHomepage() {
               }}
             >
               <Link href="/">
-                <Image src={Logo} alt="Logo Name" />
+                <Image src={Logo} alt="Logo Name" priority />
               </Link>
             </motion.div>
           </motion.div>

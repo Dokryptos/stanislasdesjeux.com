@@ -45,14 +45,25 @@ export const artType = defineType({
     defineField({
       name: "thumbnail",
       title: "Thumbnail",
-      type: "image",
-      validation: (rule) =>
-        rule.required().error(`Required to generate a page on the website`),
-      options: {
-        hotspot: true,
-      },
+      type: "array",
       description:
-        "The first image use for the presentation of the project (Obligation)",
+        "Select all the image you want to render in the random list composition, in Webp for keep the place on the CMS and keep the CMS available with the free version (Obligation) with 1 image",
+      validation: (rule) =>
+        rule
+          .required()
+          .max(3)
+          .error(
+            `Required to generate a page on the website and maximum 3 image allowed for Thumnail`
+          ),
+      of: [
+        defineArrayMember({
+          type: "image",
+          name: "image",
+          options: {
+            hotspot: true,
+          },
+        }),
+      ],
     }),
     defineField({
       name: "gallery",
@@ -75,7 +86,8 @@ export const artType = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "string",
+      type: "array",
+      of: [{ type: "block" }],
       validation: (rule) =>
         rule.required().error(`Required to generate a page on the website`),
       description: "The descritpion of the art (Obligation)",
