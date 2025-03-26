@@ -1,19 +1,17 @@
 "use client";
-import StillLifeType from "@/type/stillLife";
+import FilmType from "@/type/film";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ThumbnailGrid from "../ui/grid/thumbnailGrid";
-import StillLifeList from "../ui/list/stilLifeList";
+import FilmList from "../ui/list/filmList";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
-interface StillLifeDataProps {
-  stillLifeData: StillLifeType[];
+interface FilmDataProps {
+  filmData: FilmType[];
 }
 
-export default function StillLifeComponent({
-  stillLifeData,
-}: StillLifeDataProps) {
+export default function FilmComponent({ filmData }: FilmDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [isMobileTablet, setIsMobileTablet] = useState(false);
   const [lastHoveredProject, setLastHoveredProject] = useState<number | null>(
@@ -48,11 +46,11 @@ export default function StillLifeComponent({
   return (
     <div className="relative">
       <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 ">
-        {stillLifeData.map((data: StillLifeType, i: number) => {
+        {filmData.map((data: FilmType, i: number) => {
           return (
             <div key={data._id}>
-              <Link href={`/stillLife/${data.slug.current}`}>
-                <StillLifeList
+              <Link href={`/films/${data.slug.current}`}>
+                <FilmList
                   key={data._id}
                   data={data}
                   index={i}
@@ -69,13 +67,13 @@ export default function StillLifeComponent({
         {hoveredProject !== null && (
           <motion.div
             className="hidden laptop:block fixed top-0 left-0 right-0 bottom-0 z-0"
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.2, transition: { duration: 0.3 } }}
           >
             <ThumbnailGrid
-              thumbnails={stillLifeData[hoveredProject]?.thumbnail}
-              projectId={stillLifeData[hoveredProject]?._id}
+              thumbnails={filmData[hoveredProject]?.thumbnail}
+              projectId={filmData[hoveredProject]?._id}
               isExiting={isExiting}
             />
           </motion.div>

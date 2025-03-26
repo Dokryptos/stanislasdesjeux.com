@@ -9,11 +9,17 @@ export interface SanityImage {
   };
 }
 
+export interface SanityGallery {
+  image: SanityImage;
+  urlVimeo: string;
+}
+
 export default interface Film {
   _id: string;
   title: string;
   shortTitle?: string;
   slug: Slug;
-  thumbnail: SanityImage;
-  gallery: SanityImage[];
+  categorie?: string;
+  thumbnail: SanityImage[];
+  gallery: SanityGallery[];
 }

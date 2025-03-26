@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { UIImageSanity } from "../image/sanity";
-import { SanityImage } from "@/type/stillLife";
+import { SanityImage } from "@/type/film";
 import { useState, useEffect } from "react";
 
 interface StillLifeThumbnailGridProps {

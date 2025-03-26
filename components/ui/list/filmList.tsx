@@ -1,15 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
-import StillLifeType from "@/type/stillLife";
+import FilmType from "@/type/film";
 
 interface StillLifeListProps {
-  data: StillLifeType;
+  data: FilmType;
   index: number;
   hoveredProject: number | null;
   setHoveredProject: (index: number | null) => void;
   isMobileTablet: boolean;
 }
-export default function ProjectList({
+export default function StillLifeList({
   data,
   index,
   hoveredProject,

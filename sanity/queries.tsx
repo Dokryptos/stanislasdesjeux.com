@@ -31,12 +31,24 @@ export async function getAllStillLife(): Promise<StillLifeType[]> {
   return data;
 }
 
-export const STILLLIFE_SLUG_QUERY = defineQuery(`*[
-  _type == "stillLife"
+export const ALL_FILM_QUERY = defineQuery(`*[
+  _type == "film"
 ] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}`);
 
-export async function getStillLifeSlug(): Promise<StillLifeType[]> {
-  const { data } = await sanityFetch({ query: STILLLIFE_SLUG_QUERY });
+export async function getAllFilm(): Promise<FilmType[]> {
+  const { data } = await sanityFetch({ query: ALL_FILM_QUERY });
+  if (!data) {
+    notFound();
+  }
+  return data;
+}
+
+export const ALL_ART_QUERY = defineQuery(`*[
+  _type == "film"
+] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}`);
+
+export async function getAllArt(): Promise<ArtType> {
+  const { data } = await sanityFetch({ query: ALL_ART_QUERY });
   if (!data) {
     notFound();
   }

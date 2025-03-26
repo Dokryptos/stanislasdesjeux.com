@@ -43,6 +43,12 @@ export const filmType = defineType({
       description: `The slug is the url path of the project, Can use Generate button but try to keep it clean Without ponctuation(, . ; : ! ?) and Without (&é"'(-è_çà)=) (Obligation)`,
     }),
     defineField({
+      name: "categorie",
+      title: "Categorie",
+      type: "string",
+      description: "The categorie of the project if you want use one",
+    }),
+    defineField({
       name: "thumbnail",
       title: "Thumbnail",
       type: "array",

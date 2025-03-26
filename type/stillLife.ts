@@ -20,7 +20,6 @@ export default interface StillLife {
   shortTitle?: string;
   slug: Slug;
   categorie?: string;
-  description: string;
   thumbnail: SanityImage[];
   gallery: SanityGallery[];
 }
