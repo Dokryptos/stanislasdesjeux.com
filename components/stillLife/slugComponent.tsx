@@ -101,8 +101,9 @@ export default function StillLifeSlugComponent({
           </p>
         ) : (
           <div className="flex items-center">
-            {stillLifeCurrentProject.title} |{" "}
-            {stillLifeCurrentProject.categorie}
+            {stillLifeCurrentProject.title}{" "}
+            {stillLifeCurrentProject.categorie !== null &&
+              `| ${stillLifeCurrentProject.categorie}`}
             <p className="text-[10px] pl-1">
               ({stillLifeCurrentProject.gallery.length})
             </p>
