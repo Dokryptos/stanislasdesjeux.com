@@ -16,9 +16,6 @@ export default function StillLifeComponent({
 }: StillLifeDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [isMobileTablet, setIsMobileTablet] = useState(false);
-  const [lastHoveredProject, setLastHoveredProject] = useState<number | null>(
-    null
-  );
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
@@ -34,16 +31,13 @@ export default function StillLifeComponent({
 
   useEffect(() => {
     if (hoveredProject !== null) {
-      setLastHoveredProject(hoveredProject);
       setIsExiting(false);
-    } else if (lastHoveredProject !== null) {
+    } else {
       setIsExiting(true);
-      setTimeout(() => {
-        setLastHoveredProject(null);
-        setIsExiting(false);
-      }, 500);
+      const timeout = setTimeout(() => setIsExiting(false), 500);
+      return () => clearTimeout(timeout);
     }
-  }, [hoveredProject, lastHoveredProject]);
+  }, [hoveredProject]);
 
   return (
     <div className="relative">
