@@ -3,7 +3,7 @@ import FilmType from "@/type/film";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ThumbnailGrid from "../ui/grid/thumbnailGrid";
-import FilmList from "@/components/ui/list/artFilmList";
+import FilmList from "@/components/ui/list/filmList";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
@@ -13,20 +13,8 @@ interface FilmDataProps {
 
 export default function FilmComponent({ filmData }: FilmDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [isMobileTablet, setIsMobileTablet] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileTablet(window.innerWidth < 1024);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
+  console.log(filmData);
   useEffect(() => {
     if (hoveredProject !== null) {
       setIsExiting(false);
@@ -45,13 +33,10 @@ export default function FilmComponent({ filmData }: FilmDataProps) {
             <div key={data._id}>
               <Link href={`/films/${data.slug.current}`}>
                 <FilmList
-                  typeList="films"
                   key={data._id}
                   data={data}
                   index={i}
-                  hoveredProject={hoveredProject}
                   setHoveredProject={setHoveredProject}
-                  isMobileTablet={isMobileTablet}
                 />
               </Link>
             </div>

@@ -3,7 +3,7 @@ import ArtType from "@/type/art";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ThumbnailGrid from "../ui/grid/thumbnailGrid";
-import ArtList from "@/components/ui/list/artFilmList";
+import ArtList from "@/components/ui/list/artList";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
@@ -45,7 +45,6 @@ export default function ArtComponent({ artData }: ArtDataProps) {
             <div key={data._id}>
               <Link href={`/art/${data.slug.current}`}>
                 <ArtList
-                  typeList="art"
                   key={data._id}
                   data={data}
                   index={i}

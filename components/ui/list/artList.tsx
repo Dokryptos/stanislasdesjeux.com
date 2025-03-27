@@ -1,23 +1,21 @@
 "use client";
 import { motion } from "framer-motion";
-import FilmType from "@/type/film";
+import ArtType from "@/type/art";
 
-interface StillLifeListProps {
-  data: FilmType;
+interface ArtListProps {
+  data: ArtType;
   index: number;
   hoveredProject: number | null;
   setHoveredProject: (index: number | null) => void;
   isMobileTablet: boolean;
-  typeList: "art" | "films";
 }
-export default function StillLifeList({
+export default function ArtList({
   data,
   index,
   hoveredProject,
   setHoveredProject,
   isMobileTablet,
-  typeList,
-}: StillLifeListProps) {
+}: ArtListProps) {
   const listVariantAnimation = {
     hidden: { opacity: 0 },
     visible: (i: number) => ({
@@ -42,10 +40,10 @@ export default function StillLifeList({
       <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black mix-blend-difference">
         {data.title}
       </p>
-      {typeList === "art" && (hoveredProject === index || isMobileTablet) && (
+      {(hoveredProject === index || isMobileTablet) && (
         <div className="absolute left-full text-[10px] pl-1 z-20 desktop:p-2 font-ppFragment">
           {data?.gallery && data.gallery.length ? (
-            data.gallery.length <= 10 ? (
+            data.gallery.length < 10 ? (
               <>(0{data.gallery.length})</>
             ) : (
               <>({data.gallery.length})</>

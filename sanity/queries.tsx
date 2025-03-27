@@ -45,7 +45,7 @@ export async function getAllFilm(): Promise<FilmType[]> {
 
 export const ALL_ART_QUERY = defineQuery(`*[
   _type == "art"
-] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}`);
+] | order(orderRank) {_id, title, thumbnail, slug, gallery, description}`);
 
 export async function getAllArt(): Promise<ArtType> {
   const { data } = await sanityFetch({ query: ALL_ART_QUERY });
