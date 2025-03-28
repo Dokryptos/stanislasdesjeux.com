@@ -2,7 +2,7 @@
 import ArtType from "@/type/art";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import ThumbnailGrid from "../ui/grid/thumbnailGrid";
+import ThumbnailGrid from "../ui/image/thumbnailRandomList";
 import ArtList from "@/components/ui/list/artList";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
@@ -15,6 +15,7 @@ export default function ArtComponent({ artData }: ArtDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [isMobileTablet, setIsMobileTablet] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  console.log(artData);
 
   useEffect(() => {
     const handleResize = () => {

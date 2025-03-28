@@ -2,7 +2,7 @@
 import FilmType from "@/type/film";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import ThumbnailGrid from "../ui/grid/thumbnailGrid";
+import ThumbnailGrid from "../ui/image/thumbnailRandomList";
 import FilmList from "@/components/ui/list/filmList";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
@@ -14,7 +14,6 @@ interface FilmDataProps {
 export default function FilmComponent({ filmData }: FilmDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [isExiting, setIsExiting] = useState(false);
-  console.log(filmData);
   useEffect(() => {
     if (hoveredProject !== null) {
       setIsExiting(false);

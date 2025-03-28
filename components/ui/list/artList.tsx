@@ -41,7 +41,7 @@ export default function ArtList({
         {data.title}
       </p>
       {(hoveredProject === index || isMobileTablet) && (
-        <div className="absolute left-full text-[10px] pl-1 z-20 desktop:p-2 font-ppFragment">
+        <div className="absolute left-full text-[10px] pl-1 z-20 desktop:p-2">
           {data?.gallery && data.gallery.length ? (
             data.gallery.length < 10 ? (
               <>(0{data.gallery.length})</>

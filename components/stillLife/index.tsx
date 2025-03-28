@@ -2,7 +2,7 @@
 import StillLifeType from "@/type/stillLife";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import ThumbnailGrid from "../ui/grid/thumbnailGrid";
+import ThumbnailGrid from "../ui/image/thumbnailRandomList";
 import StillLifeList from "../ui/list/stilLifeList";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";

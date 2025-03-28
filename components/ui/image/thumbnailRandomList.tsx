@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import { UIImageSanity } from "../image/sanity";
+import { UIImageSanity } from "./sanity";
 import { SanityImage } from "@/type/film";
 import { useState, useEffect } from "react";
 
