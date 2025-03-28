@@ -24,7 +24,7 @@ export default function ThumbnailGrid({
     visible: (i: number) => ({
       opacity: 1,
       scale: 1.1,
-      transition: { delay: 0.3 + i * 0.1, duration: 0.4 },
+      transition: { delay: 0.1 + i * 0.1, duration: 0.4 },
     }),
     exit: { opacity: 0, scale: 1.2, transition: { duration: 0.2 } },
   };
@@ -99,7 +99,7 @@ export default function ThumbnailGrid({
               <UIImageSanity
                 asset={image.asset}
                 alt={`image thumbnail ${i}`}
-                className=" w-full h-full object-contain"
+                className=" w-full h-full object-cover"
               />
             </motion.div>
           );
