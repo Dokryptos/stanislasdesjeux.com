@@ -32,7 +32,7 @@ export default function NavbarHomepage() {
   if (!logoSize || !widthDivLogo || !topDivLogo) return null;
 
   return (
-    <nav className="fixed z-30 top-5 left-0 w-full text-[15px]">
+    <nav className="fixed z-30 top-5 tablet:top-[30px] left-0 w-full text-[15px]">
       <Grid className="gap-[12px]">
         <div className="relative">
           <motion.div
@@ -76,12 +76,16 @@ export default function NavbarHomepage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="col-start-6 tablet:col-start-9 laptop:col-start-12 col-span-2"
-          onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
-          onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
-          onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
+          className="col-start-6 tablet:col-start-9 laptop:col-start-12 col-span-2 text-right "
         >
-          <p className="pb-5 text-right w-auto">Menu</p>
+          <div
+            className="w-auto inline-block"
+            onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
+            onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
+            onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
+          >
+            <p className="pb-5">Menu</p>
+          </div>
           <motion.div
             initial={{ y: -20, opacity: 0, display: "none" }}
             animate={
