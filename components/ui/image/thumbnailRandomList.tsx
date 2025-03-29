@@ -20,7 +20,7 @@ export default function ThumbnailGrid({
   >([]);
 
   const thumbnailVariantAnimation = {
-    hidden: { opacity: 0, scale: 0.4 },
+    hidden: { opacity: 0, scale: 0.7 },
     visible: (i: number) => ({
       opacity: 1,
       scale: 1.1,
@@ -61,7 +61,7 @@ export default function ThumbnailGrid({
       { top: "50%", left: "5%", height: "40%" },
     ],
   ];
-
+  console.log(thumbnails);
   const generateRandomLayout = () => {
     const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
     setPositions(randomLayout);

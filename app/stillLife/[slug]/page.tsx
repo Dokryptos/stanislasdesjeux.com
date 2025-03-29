@@ -30,6 +30,7 @@ export default async function stillLifeSlug({
     notFound();
   }
   const { stillLifeCurrentSlug, stillLifeAllProject } = data;
+
   return (
     <ProjectSlugComponent
       projectCurrent={stillLifeCurrentSlug}
