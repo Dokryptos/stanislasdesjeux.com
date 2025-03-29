@@ -2,8 +2,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { UIImageSanity } from "./sanity";
 import { SanityImage } from "@/type/film";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useMemo } from "react";
+import { urlForImage } from "@/sanity/lib/image";
 interface StillLifeThumbnailGridProps {
   thumbnails: SanityImage[];
   projectId: string;
@@ -20,7 +20,7 @@ export default function ThumbnailGrid({
   >([]);
 
   const thumbnailVariantAnimation = {
-    hidden: { opacity: 0, scale: 0.7 },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: (i: number) => ({
       opacity: 1,
       scale: 1.1,
@@ -28,6 +28,26 @@ export default function ThumbnailGrid({
     }),
     exit: { opacity: 0, scale: 1.2, transition: { duration: 0.2 } },
   };
+
+  // Preloading Img
+  const preloadingKey = useMemo(() => {
+    if (!thumbnails) return;
+
+    return thumbnails
+      .map((asset) => {
+        return urlForImage(asset).url();
+      })
+      .join(".");
+  }, [thumbnails]);
+  useEffect(() => {
+    if (!thumbnails) return;
+
+    thumbnails.forEach((asset) => {
+      const img = new Image();
+      img.src = urlForImage(asset).url();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preloadingKey]);
 
   const layouts = [
     [
@@ -61,7 +81,6 @@ export default function ThumbnailGrid({
       { top: "50%", left: "5%", height: "40%" },
     ],
   ];
-  console.log(thumbnails);
   const generateRandomLayout = () => {
     const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
     setPositions(randomLayout);

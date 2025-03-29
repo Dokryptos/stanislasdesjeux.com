@@ -21,7 +21,8 @@ export async function getHomeImg(): Promise<HomeImgType[]> {
 
 export const STILLLIFE_QUERY = defineQuery(`*[
   _type == "stillLife"
-] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}`);
+] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}
+ `);
 
 export async function getAllStillLife(): Promise<StillLifeType[]> {
   const { data } = await sanityFetch({ query: STILLLIFE_QUERY });
@@ -33,7 +34,7 @@ export async function getAllStillLife(): Promise<StillLifeType[]> {
 
 export const ALL_FILM_QUERY = defineQuery(`*[
   _type == "film"
-] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}`);
+] | order(orderRank) {_id, title, thumbnail, slug, categorie, gallery}}`);
 
 export async function getAllFilm(): Promise<FilmType[]> {
   const { data } = await sanityFetch({ query: ALL_FILM_QUERY });
