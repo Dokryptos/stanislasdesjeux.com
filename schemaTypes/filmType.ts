@@ -89,13 +89,9 @@ export const filmType = defineType({
             defineField({
               name: "urlVimeo",
               title: "UrlVimeo",
-              type: "url",
+              type: "number",
               description:
                 "Url related to the Vimeo player inside array of project.",
-              validation: (rule) =>
-                rule
-                  .uri({ scheme: ["http", "https"] })
-                  .error("Invalid Vimeo URL."),
             }),
           ],
           validation: (Rule) =>

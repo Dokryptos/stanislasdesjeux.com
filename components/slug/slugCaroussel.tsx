@@ -12,7 +12,7 @@ interface ProjectType {
   title: string;
   slug: { current: string };
   gallery: {
-    urlVimeo: string;
+    urlVimeo: number;
     image?: { asset: { _ref: string } };
     imageTitle?: string;
   }[];
@@ -86,6 +86,7 @@ export default function ProjectSlugComponent({
   };
 
   const currentMedia = projectCurrent.gallery[currentMediaIndex];
+  console.log(currentMedia.urlVimeo);
   return (
     <div>
       <Grid className="w-full h-full overflow-hidden flex justify-center">

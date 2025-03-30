@@ -10,8 +10,8 @@ export interface SanityImage {
 }
 
 export interface SanityGallery {
-  image: SanityImage;
-  urlVimeo: string;
+  image?: SanityImage;
+  urlVimeo?: number;
 }
 
 export default interface Film {
