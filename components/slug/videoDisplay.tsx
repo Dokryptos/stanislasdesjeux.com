@@ -12,11 +12,14 @@ export default function VideoDisplay({ videoUrl, title }: VideoDisplayProps) {
 
   useEffect(() => {
     if (containerRef.current && !playerRef.current) {
-      console.log("✅ Initialisation du player !");
-
       try {
         playerRef.current = new Player(containerRef.current, {
           id: videoUrl,
+          autoplay: true,
+          dnt: true,
+          portrait: false,
+          title: false,
+          width: 700,
         });
 
         playerRef.current.on("play", () => console.log("▶️ Vidéo en lecture"));
@@ -27,16 +30,18 @@ export default function VideoDisplay({ videoUrl, title }: VideoDisplayProps) {
       }
 
       return () => {
-        console.log("🗑 Destruction du player");
         playerRef.current?.destroy();
         playerRef.current = null;
       };
     }
   }, [videoUrl]);
-  console.log(videoUrl);
   return (
     <div className="col-start-1 col-span-6 tablet:col-start-2 tablet:col-span-7 laptop:col-start-4 laptop:col-span-6 flex justify-center items-center w-full h-dvh">
-      <div key={title} ref={containerRef} className="z-30"></div>
+      <div
+        key={title}
+        ref={containerRef}
+        className="z-30 w-full h-full flex justify-center items-center"
+      ></div>
     </div>
   );
 }
