@@ -23,7 +23,7 @@ export default function NavbarDefault() {
   if (!logoSize) return null;
 
   return (
-    <nav className="fixed z-30 top-5 left-0 w-full text-[15px]">
+    <nav className="fixed z-30 top-5 tablet:top-[30px] left-0 w-full text-[15px]">
       <Grid className="gap-[12px]">
         <div
           className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px]"

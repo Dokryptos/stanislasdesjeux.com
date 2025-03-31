@@ -4,7 +4,12 @@ import Grid from "@/components/ui/grid";
 
 export default function About() {
   return (
-    <motion.div className="pt-[78px] text-[15px]" initial={{}}>
+    <motion.div
+      className="pt-[78px] text-[15px]"
+      initial={{ y: "-100%" }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.7, ease: "easeInOut" }}
+    >
       <Grid className="gap-6">
         <div className="col-start-1 col-span-5 tablet:col-span-7 laptop:col-start-3 laptop:col-span-6 desktop:col-start-2 desktop:col-span-6">
           <p>
