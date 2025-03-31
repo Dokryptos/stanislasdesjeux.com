@@ -72,42 +72,35 @@ export default function NavbarHomepage() {
         >
           <Link href="/about">About</Link>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="col-start-6 tablet:col-start-9 laptop:col-start-12 col-span-2 text-right "
-        >
-          <div
-            className="w-auto inline-block"
-            onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
-            onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
-            onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
-          >
-            <p className="pb-5">Menu</p>
-          </div>
-          <motion.div
-            initial={{ y: -20, opacity: 0, display: "none" }}
-            animate={
-              openMenu
-                ? { y: 0, opacity: 1, display: "flex" }
-                : { y: -20, opacity: 0, display: "none" }
-            }
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className={`flex flex-col text-[#CECECE] items-end gap-2 w-auto`}
-          >
-            <Link href="/stillLife" className="hover:text-black">
-              Still Life
-            </Link>
-            <Link href="/art" className="hover:text-black">
-              Art
-            </Link>
-            <Link href="/films" className="hover:text-black">
-              Films
-            </Link>
-          </motion.div>
-        </motion.div>
       </Grid>
+      <div
+        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto"
+        onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
+        onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
+        onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
+      >
+        <p className="pb-5">Menu</p>
+        <motion.div
+          initial={{ y: -20, opacity: 0, display: "none" }}
+          animate={
+            openMenu
+              ? { y: 0, opacity: 1, display: "flex" }
+              : { y: -20, opacity: 0, display: "none" }
+          }
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className={`flex flex-col text-[#CECECE] items-end gap-2 w-auto`}
+        >
+          <Link href="/stillLife" className="hover:text-black">
+            Still Life
+          </Link>
+          <Link href="/art" className="hover:text-black">
+            Art
+          </Link>
+          <Link href="/films" className="hover:text-black">
+            Films
+          </Link>
+        </motion.div>
+      </div>
     </nav>
   );
 }
