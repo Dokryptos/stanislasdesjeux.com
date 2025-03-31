@@ -20,7 +20,7 @@ export default function StillLifeList({
     hidden: { opacity: 0 },
     visible: (i: number) => ({
       opacity: 1,
-      transition: { delay: i * 0.2, duration: 0.5 },
+      transition: { delay: i * 0.1, duration: 0.5 },
     }),
   };
 
@@ -38,7 +38,7 @@ export default function StillLifeList({
       onMouseLeave={() => setHoveredProject(null)}
     >
       {hoveredProject === index && data.categorie !== null && (
-        <div className="absolute right-full text-[10px] z-20 laptop:pr-1 desktop:pr-2 hidden laptop:block">
+        <div className="absolute right-full text-[10px] z-20 laptop:pr-1 desktop:pr-2 hidden laptop:block  whitespace-nowrap">
           {`(${data?.categorie})`}
         </div>
       )}
