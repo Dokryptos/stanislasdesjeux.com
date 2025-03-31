@@ -30,8 +30,10 @@ export default function VideoDisplay({ videoUrl, title }: VideoDisplayProps) {
       }
 
       return () => {
-        playerRef.current?.destroy();
-        playerRef.current = null;
+        if (playerRef.current) {
+          playerRef.current?.destroy();
+          playerRef.current = null;
+        }
       };
     }
   }, [videoUrl]);
@@ -40,7 +42,7 @@ export default function VideoDisplay({ videoUrl, title }: VideoDisplayProps) {
       <div
         key={title}
         ref={containerRef}
-        className="z-30 w-full h-full flex justify-center items-center"
+        className="z-30 w-full flex justify-center items-center"
       ></div>
     </div>
   );
