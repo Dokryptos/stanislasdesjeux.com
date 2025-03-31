@@ -4,14 +4,14 @@ import Grid from "@/components/ui/grid";
 
 export default function About() {
   return (
-    <motion.div
-      className="pt-[78px] text-[15px]"
-      initial={{ y: "-100%" }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.7, ease: "easeInOut" }}
-    >
+    <motion.div className="mt-[88px] text-[15px]/[1.6] h-dvh">
       <Grid className="gap-6">
-        <div className="col-start-1 col-span-5 tablet:col-span-7 laptop:col-start-3 laptop:col-span-6 desktop:col-start-2 desktop:col-span-6">
+        <motion.div
+          className="col-start-1 col-span-5 tablet:col-span-7 laptop:col-start-3 laptop:col-span-6 desktop:col-start-2 desktop:col-span-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <p>
             Stanislas Desjeux est un photographe de nature morte vivant et
             travaillant à Paris. Son activité s’équilibre entre travail
@@ -23,8 +23,13 @@ export default function About() {
             mystères du quotidien, à la recherche constante d’une brèche dans le
             réel. 
           </p>
-        </div>
-        <div className="col-start-1 col-span-6 laptop:col-start-3 flex flex-col desktop:col-start-2 desktop:col-span-6 ">
+        </motion.div>
+        <motion.div
+          className="col-start-1 col-span-6 laptop:col-start-3 flex flex-col desktop:col-start-2 desktop:col-span-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
           <p>Représenté en France par Marie Valat</p>
           <div className="flex pb-2">
             <a
@@ -51,8 +56,13 @@ export default function About() {
           >
             21 avenue de Tourville, 75007 Paris
           </a>
-        </div>
-        <div className="col-start-1 col-span-6 laptop:col-start-9 laptop:col-span-3 flex-col flex laptop:row-start-1">
+        </motion.div>
+        <motion.div
+          className="col-start-1 col-span-6 laptop:col-start-9 laptop:col-span-3 flex-col flex laptop:row-start-1"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
           <p className="pb-2">Contact</p>
           <a
             href="mailto:stanislas.desjeux@gmail.com"
@@ -69,7 +79,7 @@ export default function About() {
           >
             instagram @stan.desjeux
           </a>
-        </div>
+        </motion.div>
       </Grid>
     </motion.div>
   );
