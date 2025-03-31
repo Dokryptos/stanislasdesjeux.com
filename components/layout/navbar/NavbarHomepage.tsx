@@ -73,7 +73,10 @@ export default function NavbarHomepage() {
           <Link href="/about">About</Link>
         </motion.div>
       </Grid>
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
         className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto"
         onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
         onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
@@ -100,7 +103,7 @@ export default function NavbarHomepage() {
             Films
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </nav>
   );
 }
