@@ -7,10 +7,12 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/public/image/StanDesjeuxLOGO.png";
 
-export default function NavbarDefault() {
+export default function NavbarAnimation() {
   const [openMenu, setOpenMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [logoSize, setLogoSize] = useState<number>(92);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
@@ -20,10 +22,38 @@ export default function NavbarDefault() {
     setLogoSize(desktop ? 92 : 92);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
   if (!logoSize) return null;
 
   return (
-    <nav className="fixed z-30 top-5 tablet:top-[30px] left-0 w-full text-[15px] bg-white">
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: showNavbar ? 0 : "-100%" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed z-30 top-0 pt-5 pb-5 tablet:pt-[30px] left-0 w-full text-[15px] bg-white"
+    >
       <Grid className="gap-[12px]">
         <div
           className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px]"
@@ -38,7 +68,7 @@ export default function NavbarDefault() {
         </div>
       </Grid>
       <div
-        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
+        className="absolute top-0 right-0 pt-5 pr-5 tablet:pr-10 tablet:pt-[30px]  text-right w-auto cursor-pointer"
         onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
         onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
         onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
@@ -65,6 +95,6 @@ export default function NavbarDefault() {
           </Link>
         </motion.div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
