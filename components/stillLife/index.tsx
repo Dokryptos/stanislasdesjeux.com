@@ -40,8 +40,8 @@ export default function StillLifeComponent({
   }, [hoveredProject]);
 
   return (
-    <div className="relative">
-      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 ">
+    <div className="relative ">
+      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 mix-blend-difference">
         {stillLifeData.map((data: StillLifeType, i: number) => {
           return (
             <div key={data._id}>

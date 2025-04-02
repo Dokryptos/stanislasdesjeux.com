@@ -38,7 +38,7 @@ export default function NavbarDefault() {
         </div>
       </Grid>
       <div
-        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto"
+        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
         onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
         onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
         onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}

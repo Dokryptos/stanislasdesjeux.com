@@ -36,16 +36,9 @@ export default function NavbarHomepage() {
       <Grid className="gap-[12px]">
         <div className="relative">
           <motion.div
-            initial={{ display: "block" }}
-            animate={{ display: "none" }}
-            transition={{ duration: 0.5 }}
-            style={{ top: `${topDivLogo}px`, width: widthDivLogo }}
-            className="top-16 z-10 fixed w-[500px] h-[100px] bg-white"
-          ></motion.div>
-          <motion.div
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
             className="relative"
           >
             <motion.div
@@ -77,7 +70,7 @@ export default function NavbarHomepage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto"
+        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
         onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
         onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
         onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}

@@ -23,6 +23,5 @@ export default async function artSlug({
   if (!data) {
     notFound();
   }
-  console.log(data);
   return <SlugArt artCurrentSlug={data} />;
 }

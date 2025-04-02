@@ -7,6 +7,5 @@ export default async function StillLife() {
     throw new Error("Aucun projet Still Life");
   }
 
-  console.log(stillLifeData);
   return <StillLifeComponent stillLifeData={stillLifeData} />;
 }

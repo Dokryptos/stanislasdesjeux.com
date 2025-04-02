@@ -15,7 +15,6 @@ export default function ArtComponent({ artData }: ArtDataProps) {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [isMobileTablet, setIsMobileTablet] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-  console.log(artData);
 
   useEffect(() => {
     const handleResize = () => {

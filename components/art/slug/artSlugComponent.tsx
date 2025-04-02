@@ -29,7 +29,7 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
           <div className="flex items-center relative ">
             <p className="text-[18px]">{artCurrentSlug.title}</p>
             <p
-              className="text-[7px] left-full absolute pl-[5px] whitespace-nowrap cursor-pointer"
+              className="text-[7px] left-full absolute p-[5px] whitespace-nowrap cursor-pointer"
               onClick={toggleDescription}
             >
               ({infoButton}info)

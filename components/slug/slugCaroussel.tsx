@@ -86,7 +86,7 @@ export default function ProjectSlugComponent({
   };
 
   const currentMedia = projectCurrent.gallery[currentMediaIndex];
-  console.log(currentMedia.urlVimeo);
+
   return (
     <div>
       <Grid className="w-full h-full overflow-hidden flex justify-center">
