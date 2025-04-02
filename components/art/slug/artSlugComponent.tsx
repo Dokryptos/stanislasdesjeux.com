@@ -52,7 +52,7 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
           </AnimatePresence>
         </div>
         <div
-          className="fixed bottom-5 right-[48%] flex justify-center z-40 text-[12px] tablet:hidden text-white mix-blend-difference"
+          className="fixed bottom-5 right-[48%] flex justify-center z-40 font-thin text-[12px] tablet:hidden text-white mix-blend-difference"
           onClick={scrollTop}
         >
           Up
