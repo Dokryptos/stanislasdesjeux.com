@@ -14,9 +14,17 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
     setOpenInfo(!openInfo);
   };
   const infoButton = openInfo ? "-" : "+";
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="pt-[80px] tablet:pt-[0px]">
-      <Grid className="tablet:mix-blend-difference tablet:text-white tablet:fixed tablet:w-full">
+    <div className="pt-[92px] tablet:pt-[0px]">
+      <Grid className="tablet:mix-blend-difference tablet:text-white tablet:fixed tablet:w-full pb-5">
         <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-span-6 laptop:col-start-4 desktop:col-span-4 desktop:col-start-5 flex-col flex items-center tablet:justify-center h-auto tablet:h-dvh">
           <div className="flex items-center relative ">
             <p className="text-[18px]">{artCurrentSlug.title}</p>
@@ -42,6 +50,12 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
               </motion.div>
             )}
           </AnimatePresence>
+        </div>
+        <div
+          className="fixed bottom-5 right-[48%] flex justify-center z-40 text-[12px] tablet:hidden text-white mix-blend-difference"
+          onClick={scrollTop}
+        >
+          Up
         </div>
       </Grid>
       <div className="block tablet:hidden">
