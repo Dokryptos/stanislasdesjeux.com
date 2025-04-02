@@ -27,13 +27,13 @@ export default function FilmList({
       initial="hidden"
       animate="visible"
       variants={listVariantAnimation}
-      className="relative flex items-center"
+      className="relative flex items-center group"
       onMouseEnter={() => {
         setHoveredProject(index);
       }}
       onMouseLeave={() => setHoveredProject(null)}
     >
-      <p className="text-[18px] desktop:text-[25px] laptop:text-[#CECECE] z-20 laptop:hover:text-black mix-blend-difference">
+      <p className="text-[18px] desktop:text-[25px] laptop:text-[#3A3A3A] z-20 laptop:group-hover:text-white ">
         {data.title}
       </p>
     </motion.div>

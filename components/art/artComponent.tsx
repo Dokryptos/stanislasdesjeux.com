@@ -39,7 +39,7 @@ export default function ArtComponent({ artData }: ArtDataProps) {
 
   return (
     <div className="relative">
-      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 ">
+      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 laptop:mix-blend-difference">
         {artData.map((data: ArtType, i: number) => {
           return (
             <div key={data._id}>

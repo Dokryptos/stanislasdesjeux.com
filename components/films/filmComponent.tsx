@@ -26,7 +26,7 @@ export default function FilmComponent({ filmData }: FilmDataProps) {
 
   return (
     <div className="relative">
-      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 ">
+      <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 laptop:mix-blend-difference">
         {filmData.map((data: FilmType, i: number) => {
           return (
             <div key={data._id}>
