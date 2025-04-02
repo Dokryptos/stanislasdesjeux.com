@@ -11,9 +11,6 @@ export default {
       fontFamily: {
         ppFragment: ["var(--font-ppFragment)"],
       },
-      lineHeight: {
-        "120": "120%",
-      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

@@ -38,7 +38,7 @@ export default function StillLifeList({
       onMouseLeave={() => setHoveredProject(null)}
     >
       {hoveredProject === index && data.categorie !== null && (
-        <div className="absolute right-full text-[10px] z-20 laptop:pr-1 desktop:pr-2 hidden laptop:block  whitespace-nowrap">
+        <div className="absolute right-full text-[10px] z-20 laptop:pr-1 desktop:pr-2 hidden laptop:block whitespace-nowrap">
           {`(${data?.categorie})`}
         </div>
       )}
