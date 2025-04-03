@@ -12,7 +12,13 @@ interface ProjectType {
   title: string;
   slug: { current: string };
   gallery: {
-    urlVimeo: number;
+    video?: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+      };
+      playbackId?: string;
+    };
     image?: { asset: { _ref: string } };
     imageTitle?: string;
   }[];
@@ -47,7 +53,7 @@ export default function ProjectSlugComponent({
         if (asset.image) {
           return urlForImage(asset.image.asset._ref).url();
         }
-        return asset.urlVimeo;
+        return asset.video;
       })
       .join(".");
   }, [projectCurrent?.gallery]);
@@ -96,9 +102,9 @@ export default function ProjectSlugComponent({
             alt={`Image ${currentMediaIndex} du projet ${projectCurrent.title}`}
           />
         ) : (
-          currentMedia?.urlVimeo && (
+          currentMedia?.video && (
             <VideoDisplay
-              videoUrl={currentMedia.urlVimeo}
+              video={currentMedia?.video}
               title={`Vidéo ${currentMediaIndex} du projet ${projectCurrent.title}`}
             />
           )

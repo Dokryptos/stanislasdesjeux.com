@@ -77,7 +77,7 @@ export const filmType = defineType({
         defineArrayMember({
           type: "object",
           name: "galleryItem",
-          description: "Need 1 vimeo link or 1 image for complmete the project",
+          description: "Need 1 video or 1 image for complmete the project",
           fields: [
             defineField({
               name: "image",
@@ -87,20 +87,20 @@ export const filmType = defineType({
               description: "Image related to the array of project",
             }),
             defineField({
-              name: "urlVimeo",
-              title: "UrlVimeo",
-              type: "number",
+              title: "Video file",
+              type: "mux.video",
+              name: "video",
               description:
-                "Url related to the Vimeo player inside array of project.",
+                "Video related to the Video inside array of project.",
             }),
           ],
           validation: (Rule) =>
             Rule.custom((fields) => {
-              if (fields?.image && fields?.urlVimeo) {
-                return "You can only have image OR a Vimeo link, not both";
+              if (fields?.image && fields?.video) {
+                return "You can only have image OR a video, not both";
               }
-              if (!fields?.image && !fields?.urlVimeo) {
-                return "You must provide either an image or a Vimeo link.";
+              if (!fields?.image && !fields?.video) {
+                return "You must provide either an image or a video.";
               }
               return true;
             }),

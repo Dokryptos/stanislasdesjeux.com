@@ -8,10 +8,17 @@ export interface SanityImage {
     _type: "reference";
   };
 }
+export interface SanityVideo {
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+  playbackId?: string;
+}
 
 export interface SanityGallery {
   image?: SanityImage;
-  urlVimeo?: number;
+  video?: SanityVideo;
 }
 
 export default interface Film {
@@ -20,5 +27,5 @@ export default interface Film {
   shortTitle?: string;
   slug: Slug;
   thumbnail: SanityImage[];
-  gallery: SanityImage[];
+  gallery: SanityGallery[];
 }

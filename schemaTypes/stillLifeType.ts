@@ -113,23 +113,19 @@ export const stillLifeType = defineType({
                 }),
             }),
             defineField({
-              name: "urlVimeo",
-              title: "UrlVimeo",
-              type: "url",
+              title: "Video file",
+              type: "mux.video",
+              name: "video",
               description:
-                "Url related to the Vimeo player inside array of project.",
-              validation: (rule) =>
-                rule
-                  .uri({ scheme: ["http", "https"] })
-                  .error("Invalid Vimeo URL."),
+                "Video related to the Video inside array of project.",
             }),
           ],
           validation: (Rule) =>
             Rule.custom((fields) => {
-              if (fields?.image && fields?.urlVimeo) {
+              if (fields?.image && fields?.video) {
                 return "You can only have image OR a Vimeo link, not both";
               }
-              if (!fields?.image && !fields?.urlVimeo) {
+              if (!fields?.image && !fields?.video) {
                 return "You must provide either an image or a Vimeo link.";
               }
               return true;

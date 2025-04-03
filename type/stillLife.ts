@@ -8,10 +8,17 @@ export interface SanityImage {
     _type: "reference";
   };
 }
+export interface SanityVideo {
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+  playbackId?: string;
+}
 export interface SanityGallery {
   image: SanityImage;
   imageTitle: string;
-  urlVimeo: string;
+  video: SanityVideo;
 }
 
 export default interface StillLife {
