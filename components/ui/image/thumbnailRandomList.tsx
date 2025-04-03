@@ -19,6 +19,8 @@ export default function ThumbnailGrid({
     { top: string; left: string; height: string }[]
   >([]);
 
+  const [lastLayoutIndex, setLastLayoutIndex] = useState<number | null>(null);
+
   const thumbnailVariantAnimation = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: (i: number) => ({
@@ -39,6 +41,7 @@ export default function ThumbnailGrid({
       })
       .join(".");
   }, [thumbnails]);
+
   useEffect(() => {
     if (!thumbnails) return;
 
@@ -82,8 +85,13 @@ export default function ThumbnailGrid({
     ],
   ];
   const generateRandomLayout = () => {
-    const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
-    setPositions(randomLayout);
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * layouts.length);
+    } while (newIndex === lastLayoutIndex);
+
+    setLastLayoutIndex(newIndex);
+    setPositions(layouts[newIndex]);
   };
 
   useEffect(() => {
@@ -92,6 +100,7 @@ export default function ThumbnailGrid({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId, thumbnails.length]);
+
   return (
     <div className="relative w-full h-full">
       <AnimatePresence>
