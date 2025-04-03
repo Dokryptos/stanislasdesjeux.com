@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/public/image/StanDesjeuxLOGO.png";
+import { usePathname } from "next/navigation";
 
 export default function NavbarAnimation() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -13,6 +14,8 @@ export default function NavbarAnimation() {
   const [logoSize, setLogoSize] = useState<number>(92);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
+  const pathname = usePathname();
+  const isAbout = pathname === "/about";
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
@@ -50,7 +53,7 @@ export default function NavbarAnimation() {
   return (
     <motion.nav
       initial={{ y: 0 }}
-      animate={{ y: showNavbar ? 0 : "-100%" }}
+      animate={isAbout ? {} : { y: showNavbar ? 0 : "-100%" }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed z-30 top-0 pt-5 pb-5 tablet:pt-[30px] left-0 w-full text-[15px] bg-white"
     >
