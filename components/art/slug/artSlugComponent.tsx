@@ -24,10 +24,10 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
 
   return (
     <div className="pt-[92px] tablet:pt-[0px]">
-      <Grid className="tablet:mix-blend-difference tablet:text-white tablet:fixed tablet:w-full pb-5">
-        <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-span-6 laptop:col-start-4 desktop:col-span-4 desktop:col-start-5 flex-col flex items-center tablet:justify-center h-auto tablet:h-dvh">
+      <Grid className="tablet:mix-blend-difference tablet:text-white tablet:fixed tablet:w-full pb-5 ">
+        <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-span-6 laptop:col-start-4 desktop:col-span-4 desktop:col-start-5 flex-col flex items-center tablet:justify-center h-auto tablet:h-dvh ">
           <div
-            className="flex items-center relative cursor-pointer"
+            className="flex items-center relative cursor-pointer z-20"
             onClick={toggleDescription}
           >
             <p className="text-[18px]">{artCurrentSlug.title}</p>
