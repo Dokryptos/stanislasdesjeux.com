@@ -23,15 +23,15 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
   };
 
   return (
-    <div className="pt-[92px] tablet:pt-[0px]">
-      <Grid className="tablet:mix-blend-difference tablet:text-white tablet:fixed tablet:w-full pb-5 ">
-        <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-span-6 laptop:col-start-4 desktop:col-span-4 desktop:col-start-5 flex-col flex items-center tablet:justify-center h-auto tablet:h-dvh ">
+    <div className="pt-[92px] tablet:pt-[0px] tablet:relative">
+      <Grid className="tablet:mix-blend-difference tablet:text-white tablet:fixed tablet:w-full pb-5 z-10">
+        <div className="col-start-1 col-span-6 tablet:col-start-3 tablet:col-span-5 laptop:col-span-6 laptop:col-start-4 desktop:col-span-4 desktop:col-start-5 flex-col flex items-center tablet:justify-center h-auto tablet:h-dvh">
           <div
             className="flex items-center relative cursor-pointer z-20"
             onClick={toggleDescription}
           >
             <p className="text-[18px]">{artCurrentSlug.title}</p>
-            <p className="text-[10px] left-full absolute p-[5px] whitespace-nowrap cursor-pointer">
+            <p className="text-[10px] left-full absolute p-[5px] whitespace-nowrap">
               ({infoButton}info)
             </p>
           </div>
@@ -51,18 +51,19 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
             )}
           </AnimatePresence>
         </div>
+
         <div
-          className="fixed bottom-5 right-[48%] flex justify-center z-40 font-thin text-[12px] tablet:hidden text-white mix-blend-difference"
+          className="fixed bottom-5 right-[48%] flex justify-center z-40 font-thin text-[12px] tablet:hidden text-white"
           onClick={scrollTop}
         >
           Up
         </div>
       </Grid>
+      <div className="hidden tablet:block ">
+        <ArtLaptopGallerySlug artGallery={artCurrentSlug.gallery} />
+      </div>
       <div className="block tablet:hidden">
         <ArtMobileGallerySlug artGallery={artCurrentSlug.gallery} />
-      </div>
-      <div className="hidden tablet:block">
-        <ArtLaptopGallerySlug artGallery={artCurrentSlug.gallery} />
       </div>
     </div>
   );

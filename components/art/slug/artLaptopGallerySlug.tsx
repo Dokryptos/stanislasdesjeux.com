@@ -56,7 +56,7 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   return (
     <div
       ref={containerRef}
-      className="absolute top-0 left-0 w-full h-full overflow-y-scroll z-0"
+      className="absolute top-0 left-0 w-full h-full overflow-visible pointer-events-none z-0"
       onScroll={handleScroll}
     >
       <div
@@ -69,7 +69,7 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="absolute z-0"
+            className="absolute z-0 pointer-events-none"
             style={{
               top: `${img.top}px`,
               left: `${img.left}%`,
