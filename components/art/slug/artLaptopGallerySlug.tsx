@@ -12,6 +12,7 @@ interface FloatingImage {
   top: number;
   left: number;
   url: string;
+  width: string;
 }
 
 export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
@@ -20,39 +21,49 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   const maxVisible = 4;
   const spacingY = 300;
 
-  const columns = [15, 35, 55, 75]; // virtual columns in %
-
+  const layoutTemplate = [
+    { left: 10, topOffset: 100, width: "20%" },
+    { left: 80, topOffset: 150, width: "90%" },
+    { left: 45, topOffset: 300, width: "45%" },
+    { left: 5, topOffset: 320, width: "20%" },
+    { left: 65, topOffset: 400, width: "40%" },
+    { left: 30, topOffset: 450, width: "20%" },
+    { left: 80, topOffset: 500, width: "90%" },
+    { left: 20, topOffset: 600, width: "15%" },
+  ];
   const generateNewImage = (i: number): FloatingImage => {
     const url = artGallery[i % artGallery.length].asset._ref;
     const id = `${i}-${Date.now()}`;
-    const left = columns[Math.floor(Math.random() * columns.length)];
-    const top = i * spacingY;
 
-    return { id, url, top, left };
+    const template = layoutTemplate[i % layoutTemplate.length];
+    const left = template.left;
+    const top = i * spacingY;
+    const width = template.width;
+    return { id, url, top, left, width };
   };
 
   useEffect(() => {
-    const initial = Array.from({ length: maxVisible * 2 }, (_, i) =>
+    const initial = Array.from({ length: maxVisible * 10 }, (_, i) =>
       generateNewImage(i)
     );
     setFloatingImages(initial);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [artGallery]);
 
+  // Gestion du scroll infini
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
+      const bottom = scrollTop + window.innerHeight; // Position du bas de la fenêtre
 
-      if (
-        scrollTop + window.innerHeight >
-        floatingImages.length * spacingY - 800
-      ) {
+      if (bottom > floatingImages[floatingImages.length - 1]?.top - 500) {
         const next = Array.from({ length: maxVisible }, (_, i) =>
           generateNewImage(floatingImages.length + i)
         );
         setFloatingImages((prev) => [...prev, ...next]);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -71,9 +82,9 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
       >
         {floatingImages.map((img, index) => (
           <motion.div
-            key={img.id}
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
+            key={index}
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="absolute z-0 pointer-events-none"
             style={{
@@ -84,7 +95,8 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
             <UIImageSanity
               asset={img.url}
               alt={`floating-${index}`}
-              className="w-auto h-[250px] object-cover"
+              style={{ width: img.width }}
+              className="w-auto object-cover"
             />
           </motion.div>
         ))}
