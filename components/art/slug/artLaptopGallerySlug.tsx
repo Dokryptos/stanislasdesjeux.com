@@ -1,7 +1,6 @@
-import { UIImageSanity } from "@/components/ui/image/sanity";
 import { SanityImage } from "@/type/art";
-import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import ImageItemDesktop from "./imageItemDesktop";
 
 interface artGallerySlug {
   artGallery: SanityImage[];
@@ -24,14 +23,14 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   const imageHeights = useRef<{ [key: string]: number }>({});
 
   const layoutTemplate = [
-    { left: 10, top: 100, width: "15%" },
-    { left: 80, top: 150, width: "90%" },
-    { left: 45, top: 300, width: "35%" },
-    { left: 5, top: 320, width: "25%" },
-    { left: 65, top: 400, width: "40%" },
-    { left: 30, top: 450, width: "20%" },
-    { left: 80, top: 500, width: "85%" },
-    { left: 30, top: 650, width: "20%" },
+    { left: 10, width: "15%" },
+    { left: 80, width: "90%" },
+    { left: 45, width: "35%" },
+    { left: 5, width: "25%" },
+    { left: 65, width: "40%" },
+    { left: 30, width: "20%" },
+    { left: 80, width: "85%" },
+    { left: 30, width: "20%" },
   ];
 
   const recalcPositions = (images: FloatingImage[]) => {
@@ -101,29 +100,13 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
         style={{ height: `${floatingImages.length * 300}px` }}
         className="relative"
       >
-        {floatingImages.map((img, index) => {
-          return (
-            <motion.div
-              key={index}
-              initial={{ y: 100 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute z-0 pointer-events-none"
-              style={{
-                top: `${img.top}px`,
-                left: `${img.left}%`,
-              }}
-            >
-              <UIImageSanity
-                asset={img.url}
-                alt={`floating-${index}`}
-                style={{ width: img.width }}
-                className="w-auto object-cover"
-                onLoad={(e) => handleImageLoad(img.id, e)}
-              />
-            </motion.div>
-          );
-        })}
+        {floatingImages.map((img) => (
+          <ImageItemDesktop
+            key={img.id}
+            img={img}
+            onImageLoad={handleImageLoad}
+          />
+        ))}
       </div>
     </div>
   );
