@@ -24,10 +24,10 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   const layoutTemplate = [
     { left: 10, topOffset: 100, width: "20%" },
     { left: 80, topOffset: 150, width: "90%" },
-    { left: 45, topOffset: 300, width: "45%" },
-    { left: 5, topOffset: 320, width: "20%" },
+    { left: 45, topOffset: 300, width: "35%" },
+    { left: 5, topOffset: 320, width: "30%" },
     { left: 65, topOffset: 400, width: "40%" },
-    { left: 30, topOffset: 450, width: "20%" },
+    { left: 30, topOffset: 450, width: "40%" },
     { left: 80, topOffset: 500, width: "90%" },
     { left: 20, topOffset: 600, width: "15%" },
   ];
@@ -43,7 +43,7 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   };
 
   useEffect(() => {
-    const initial = Array.from({ length: maxVisible * 10 }, (_, i) =>
+    const initial = Array.from({ length: maxVisible * 50 }, (_, i) =>
       generateNewImage(i)
     );
     setFloatingImages(initial);
