@@ -39,25 +39,31 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [artGallery]);
 
-  const handleScroll = () => {
-    const scrollTop = containerRef.current?.scrollTop || 0;
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
 
-    if (
-      scrollTop + window.innerHeight >
-      floatingImages.length * spacingY - 800
-    ) {
-      const next = Array.from({ length: maxVisible }, (_, i) =>
-        generateNewImage(floatingImages.length + i)
-      );
-      setFloatingImages((prev) => [...prev, ...next]);
-    }
-  };
+      if (
+        scrollTop + window.innerHeight >
+        floatingImages.length * spacingY - 800
+      ) {
+        const next = Array.from({ length: maxVisible }, (_, i) =>
+          generateNewImage(floatingImages.length + i)
+        );
+        setFloatingImages((prev) => [...prev, ...next]);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [floatingImages]);
 
   return (
     <div
       ref={containerRef}
       className="absolute top-0 left-0 w-full h-full overflow-visible pointer-events-none z-0"
-      onScroll={handleScroll}
     >
       <div
         style={{ height: `${floatingImages.length * spacingY}px` }}
