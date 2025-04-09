@@ -33,6 +33,17 @@ body {
 html {
   overscroll-behavior: none;
 }
+html,
+body {
+  height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  user-select: none;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
 
 mux-player {
   /* Hide all controls at once */
