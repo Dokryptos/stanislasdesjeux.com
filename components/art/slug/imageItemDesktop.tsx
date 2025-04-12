@@ -28,7 +28,7 @@ const ImageItemDesktop = ({ img, onImageLoad }: ImageItemProps) => {
   });
 
   // Transformation de la progression du scroll en échelle
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
 
   return (
     <motion.div
