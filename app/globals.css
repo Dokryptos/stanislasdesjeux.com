@@ -50,8 +50,6 @@ mux-player {
 
   /* Target all sections by excluding the section prefix */
   /* --play-button: none; */
-  --bottom-controls: none;
-  --live-button: none;
   --seek-backward-button: none;
   --seek-forward-button: none;
   --mute-button: none;
@@ -61,9 +59,6 @@ mux-player {
   --fullscreen-button: none;
   --cast-button: none;
   --playback-rate-button: none;
-  --volume-range: none;
-  --time-range: none;
-  --time-display: none;
   --title-display: none;
   --duration-display: none;
 }

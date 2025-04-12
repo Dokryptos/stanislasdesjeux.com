@@ -9,6 +9,7 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
   return (
     <div className="col-start-1 col-span-6 tablet:col-start-2 tablet:col-span-7 laptop:col-start-4 laptop:col-span-6 flex justify-center items-center w-full h-dvh">
       <MuxPlayer
+        nohotkeys
         playbackId={video.playbackId}
         key={title}
         className="z-30 w-full flex justify-center items-center"
