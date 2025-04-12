@@ -16,7 +16,7 @@ export default function FilmList({
     hidden: { opacity: 0 },
     visible: (i: number) => ({
       opacity: 1,
-      transition: { delay: i * 0.2, duration: 0.5 },
+      transition: { delay: i * 0.12, duration: 0.5 },
     }),
   };
 

@@ -62,7 +62,7 @@ export default function ThumbnailGrid({
     [
       { top: "10%", left: "5%", height: "35%", width: "25%" },
       { top: "30%", left: "70%", height: "45%", width: "18%" },
-      { top: "70%", left: "25%", height: "25%", width: "22%" },
+      { top: "70%", left: "25%", height: "25%", width: "17%" },
     ],
     [
       { top: "50%", left: "0%", height: "35%", width: "25%" },
