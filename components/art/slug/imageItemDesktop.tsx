@@ -40,15 +40,19 @@ const ImageItemDesktop = ({ img, onImageLoad }: ImageItemProps) => {
       style={{
         top: `${img.top}px`,
         left: `${img.left}%`,
+        width: img.width,
         transform: "translateX(-50%)",
       }}
     >
-      <motion.div style={{ transformOrigin: "center", scale }}>
+      <motion.div
+        style={{ transformOrigin: "top center", scale }}
+        className="w-auto"
+      >
         <UIImageSanity
           asset={img.url}
           alt={`floating-${img.id}`}
-          style={{ width: img.width }}
-          className="w-auto object-cover"
+          style={{ width: "100%" }}
+          className="object-cover"
           onLoad={(e) => onImageLoad(img.id, e)}
         />
       </motion.div>

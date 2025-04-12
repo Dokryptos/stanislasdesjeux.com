@@ -24,19 +24,19 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
 
   const layoutTemplate = [
     { left: 10, width: "15%" },
-    { left: 80, width: "90%" },
-    { left: 45, width: "35%" },
-    { left: 5, width: "25%" },
-    { left: 65, width: "40%" },
+    { left: 76, width: "20%" },
+    { left: 36, width: "25%" },
+    { left: 2, width: "25%" },
+    { left: 65, width: "26%" },
     { left: 30, width: "20%" },
-    { left: 80, width: "85%" },
+    { left: 70, width: "15%" },
     { left: 30, width: "20%" },
   ];
 
   const recalcPositions = (images: FloatingImage[]) => {
     let cumulativeTop = 0;
     return images.map((img) => {
-      const height = imageHeights.current[img.id] || 300;
+      const height = 300;
       const newImg = { ...img, top: cumulativeTop };
       cumulativeTop += height;
       return newImg;
