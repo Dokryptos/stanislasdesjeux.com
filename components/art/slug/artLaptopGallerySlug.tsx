@@ -27,7 +27,7 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
     { left: 76, width: "20%" },
     { left: 36, width: "25%" },
     { left: 2, width: "25%" },
-    { left: 65, width: "26%" },
+    { left: 65, width: "20%" },
     { left: 30, width: "20%" },
     { left: 70, width: "15%" },
     { left: 30, width: "20%" },
@@ -36,7 +36,7 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   const recalcPositions = (images: FloatingImage[]) => {
     let cumulativeTop = 0;
     return images.map((img) => {
-      const height = 300;
+      const height = 350;
       const newImg = { ...img, top: cumulativeTop };
       cumulativeTop += height;
       return newImg;
