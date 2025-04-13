@@ -22,21 +22,36 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   const globalIndex = useRef<number>(0);
   const imageHeights = useRef<{ [key: string]: number }>({});
 
-  const layoutTemplate = [
-    { left: 10, width: "15%" },
-    { left: 76, width: "20%" },
-    { left: 36, width: "25%" },
-    { left: 2, width: "25%" },
-    { left: 65, width: "20%" },
-    { left: 30, width: "20%" },
-    { left: 80, width: "15%" },
-    { left: 30, width: "20%" },
-  ];
+  const isLargeScreen =
+    typeof window !== "undefined" && window.innerWidth >= 1200;
 
+  const layoutTemplate = isLargeScreen
+    ? [
+        { left: 10, width: "15%" },
+        { left: 76, width: "18%" },
+        { left: 36, width: "22%" },
+        { left: 2, width: "20%" },
+        { left: 65, width: "18%" },
+        { left: 30, width: "18%" },
+        { left: 80, width: "15%" },
+        { left: 35, width: "17%" },
+      ]
+    : // layout desktop and +
+      [
+        { left: 10, width: "15%" },
+        { left: 76, width: "20%" },
+        { left: 36, width: "25%" },
+        { left: 2, width: "25%" },
+        { left: 65, width: "20%" },
+        { left: 30, width: "20%" },
+        { left: 80, width: "17%" },
+        { left: 30, width: "20%" },
+        // layout laptop / tablet
+      ];
   const recalcPositions = (images: FloatingImage[]) => {
     let cumulativeTop = 0;
     return images.map((img) => {
-      const height = 300;
+      const height = isLargeScreen ? 325 : 300;
       const newImg = { ...img, top: cumulativeTop };
       cumulativeTop += height;
       return newImg;
