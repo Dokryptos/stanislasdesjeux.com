@@ -6,10 +6,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/public/image/StanDesjeuxLOGO.png";
+import BurgerMenu from "@/components/ui/burgerMenu/burgerMenu";
 
 export default function NavbarHomepage() {
   const [openMenu, setOpenMenu] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [topDivLogo, setTopDivLogo] = useState<number>(64);
   const [widthDivLogo, setWidthDivLogo] = useState<number>(250);
   const [logoSize, setLogoSize] = useState<{
@@ -19,9 +19,7 @@ export default function NavbarHomepage() {
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
-    const mobile = screenWidth <= 1024;
     const desktop = screenWidth <= 1440;
-    setIsMobile(mobile);
     setLogoSize(
       desktop ? { normal: 92, animated: 242 } : { normal: 92, animated: 424 }
     );
@@ -32,7 +30,7 @@ export default function NavbarHomepage() {
   if (!logoSize || !widthDivLogo || !topDivLogo) return null;
 
   return (
-    <nav className="fixed z-30 top-5 tablet:top-[30px] left-0 w-full text-[15px]">
+    <nav className="fixed z-30 top-0 tablet:top-[30px] left-0 w-full text-[15px] bg-white pt-5 pb-5">
       <Grid className="gap-[12px]">
         <div className="relative">
           <motion.div
@@ -66,37 +64,7 @@ export default function NavbarHomepage() {
           <Link href="/about">About</Link>
         </motion.div>
       </Grid>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
-        onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
-        onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
-        onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
-      >
-        <p className="pb-5">Menu</p>
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={
-            openMenu
-              ? { height: "auto", opacity: 1 }
-              : { height: 0, opacity: 0 }
-          }
-          transition={{ duration: 0.1, ease: "easeInOut" }}
-          className={`overflow-hidden flex flex-col text-[#CECECE] items-end gap-2 w-dvw bg-white pb-5 laptop:w-auto laptop:pb-0 laptop:bg-transparent`}
-        >
-          <Link href="/stillLife" className="hover:text-black">
-            Still Life
-          </Link>
-          <Link href="/art" className="hover:text-black">
-            Art
-          </Link>
-          <Link href="/films" className="hover:text-black">
-            Films
-          </Link>
-        </motion.div>
-      </motion.div>
+      <BurgerMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />
     </nav>
   );
 }

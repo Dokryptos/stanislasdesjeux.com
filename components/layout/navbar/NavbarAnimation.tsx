@@ -7,10 +7,10 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/public/image/StanDesjeuxLOGO.png";
 import { usePathname } from "next/navigation";
+import BurgerMenu from "@/components/ui/burgerMenu/burgerMenu";
 
 export default function NavbarAnimation() {
   const [openMenu, setOpenMenu] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [logoSize, setLogoSize] = useState<number>(92);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
@@ -19,17 +19,11 @@ export default function NavbarAnimation() {
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
-    const mobile = screenWidth <= 1024;
     const desktop = screenWidth <= 1440;
-    setIsMobile(mobile);
     setLogoSize(desktop ? 92 : 92);
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
         setShowNavbar(false);
@@ -40,12 +34,9 @@ export default function NavbarAnimation() {
       setLastScrollY(window.scrollY);
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
@@ -71,34 +62,7 @@ export default function NavbarAnimation() {
           <Link href="/about">About</Link>
         </div>
       </Grid>
-      <div
-        className="absolute top-0 right-0 pt-5 pr-5 tablet:pr-10 tablet:pt-[30px] text-right w-auto cursor-pointer"
-        onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
-        onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
-        onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
-      >
-        <p className="pb-5">Menu</p>
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={
-            openMenu
-              ? { height: "auto", opacity: 1 }
-              : { height: 0, opacity: 0 }
-          }
-          transition={{ duration: 0.1, ease: "easeInOut" }}
-          className={`overflow-hidden flex flex-col text-[#CECECE] items-end gap-2 w-dvw bg-white pb-5 laptop:w-auto laptop:pb-0 laptop:bg-transparent`}
-        >
-          <Link href="/stillLife" className="hover:text-black">
-            Still Life
-          </Link>
-          <Link href="/art" className="hover:text-black">
-            Art
-          </Link>
-          <Link href="/films" className="hover:text-black">
-            Films
-          </Link>
-        </motion.div>
-      </div>
+      <BurgerMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />
     </motion.nav>
   );
 }
