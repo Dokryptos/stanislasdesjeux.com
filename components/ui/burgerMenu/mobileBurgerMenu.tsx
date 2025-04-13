@@ -41,7 +41,7 @@ export default function MobileBurgerMenu({
               : { height: 0, opacity: 0 }
           }
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className={`overflow-hidden absolute top-9 right-0 tablet:right-5 flex flex-col text-black items-end gap-2  w-dvw bg-white z-20 pr-5 pb-5 pt-5`}
+          className={`overflow-hidden absolute top-12 right-0 tablet:right-5 flex flex-col text-black items-end gap-2  w-dvw bg-white z-20 pr-5 pb-5 pt-5`}
         >
           <Link
             href="/stillLife"
