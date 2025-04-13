@@ -52,7 +52,7 @@ export default function NavbarDefault() {
               : { y: -20, opacity: 0, display: "none" }
           }
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className={`flex flex-col text-[#CECECE] items-end gap-2 w-auto`}
+          className={`flex flex-col text-[#CECECE] items-end gap-2 w-dvw bg-white pb-5 laptop:w-auto laptop:pb-0 laptop:bg-transparent`}
         >
           <Link href="/stillLife" className="hover:text-black">
             Still Life

@@ -33,6 +33,7 @@ export default function NavbarAnimation() {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
         setShowNavbar(false);
+        setOpenMenu(false);
       } else {
         setShowNavbar(true);
       }
@@ -71,7 +72,7 @@ export default function NavbarAnimation() {
         </div>
       </Grid>
       <div
-        className="absolute top-0 right-0 pt-5 pr-5 tablet:pr-10 tablet:pt-[30px]  text-right w-auto cursor-pointer"
+        className="absolute top-0 right-0 pt-5 pr-5 tablet:pr-10 tablet:pt-[30px] text-right w-auto cursor-pointer"
         onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
         onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
         onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
@@ -85,7 +86,7 @@ export default function NavbarAnimation() {
               : { y: -20, opacity: 0, display: "none" }
           }
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className={`flex flex-col text-[#CECECE] items-end gap-2 w-auto`}
+          className={`flex flex-col text-[#CECECE] items-end gap-2 w-dvw bg-white pb-5 laptop:w-auto laptop:pb-0 laptop:bg-transparent`}
         >
           <Link href="/stillLife" className="hover:text-black">
             Still Life
