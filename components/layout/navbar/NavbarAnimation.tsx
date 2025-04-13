@@ -79,14 +79,14 @@ export default function NavbarAnimation() {
       >
         <p className="pb-5">Menu</p>
         <motion.div
-          initial={{ y: -20, opacity: 0, display: "none" }}
+          initial={{ height: 0, opacity: 0 }}
           animate={
             openMenu
-              ? { y: 0, opacity: 1, display: "flex" }
-              : { y: -20, opacity: 0, display: "none" }
+              ? { height: "auto", opacity: 1 }
+              : { height: 0, opacity: 0 }
           }
-          transition={{ duration: 0.2, ease: "easeInOut" }}
-          className={`flex flex-col text-[#CECECE] items-end gap-2 w-dvw bg-white pb-5 laptop:w-auto laptop:pb-0 laptop:bg-transparent`}
+          transition={{ duration: 0.1, ease: "easeInOut" }}
+          className={`overflow-hidden flex flex-col text-[#CECECE] items-end gap-2 w-dvw bg-white pb-5 laptop:w-auto laptop:pb-0 laptop:bg-transparent`}
         >
           <Link href="/stillLife" className="hover:text-black">
             Still Life
