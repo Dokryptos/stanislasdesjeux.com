@@ -29,14 +29,14 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
     { left: 2, width: "25%" },
     { left: 65, width: "20%" },
     { left: 30, width: "20%" },
-    { left: 70, width: "15%" },
+    { left: 80, width: "15%" },
     { left: 30, width: "20%" },
   ];
 
   const recalcPositions = (images: FloatingImage[]) => {
     let cumulativeTop = 0;
     return images.map((img) => {
-      const height = 350;
+      const height = 300;
       const newImg = { ...img, top: cumulativeTop };
       cumulativeTop += height;
       return newImg;
@@ -94,11 +94,11 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
   return (
     <div
       ref={containerRef}
-      className="absolute top-0 left-0 w-full h-full overflow-visible pointer-events-none z-0"
+      className="absolute top-0 left-0 w-full h-full overflow-visible pointer-events-none pt-20 z-0"
     >
       <div
         style={{ height: `${floatingImages.length * 300}px` }}
-        className="relative"
+        className="relative  "
       >
         {floatingImages.map((img) => (
           <ImageItemDesktop
