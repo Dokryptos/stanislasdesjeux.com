@@ -91,25 +91,25 @@ export default function NavbarAnimation() {
         transition={{ duration: 0.2, ease: "easeInOut" }}
         onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
         onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
-        className={`fixed top-0 right-0 mt-[70px] pr-5 tablet:pr-[40px] flex flex-col text-[#CECECE] items-end gap-2 w-auto mix-blend-difference z-30 bg-black`}
+        className={`fixed top-0 right-0 mt-[70px] pr-5 tablet:pr-[40px] flex flex-col text-white items-end gap-2 w-auto mix-blend-difference z-30 bg-black`}
       >
         <Link
           href="/stillLife"
-          className="hover:text-white hover:italic"
+          className="hover:italic"
           onClick={() => setOpenMenu(false)}
         >
           Still Life
         </Link>
         <Link
           href="/art"
-          className="hover:text-white hover:italic"
+          className="hover:italic"
           onClick={() => setOpenMenu(false)}
         >
           Art
         </Link>
         <Link
           href="/films"
-          className="hover:text-white hover:italic"
+          className="hover:italic"
           onClick={() => setOpenMenu(false)}
         >
           Films

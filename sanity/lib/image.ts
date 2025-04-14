@@ -7,4 +7,4 @@ import { dataset, projectId } from "../env";
 const builder = createImageUrlBuilder({ projectId, dataset });
 
 export const urlForImage = (source: SanityImageSource) =>
-  builder.image(source).width(1600).fit("max").auto("format").quality(75);
+  builder.image(source).width(1200).fit("max").auto("format").quality(75);
