@@ -4,7 +4,7 @@ import Grid from "@/components/ui/grid";
 
 export default function About() {
   return (
-    <motion.div className="pt-[88px] text-[15px]/[1.6] h-dvh">
+    <motion.div className="pt-[88px] pb-10 text-[15px]/[1.6] h-dvh">
       <Grid className="gap-6">
         <motion.div
           className="col-start-1 col-span-5 tablet:col-span-7 laptop:col-start-3 laptop:col-span-6 desktop:col-start-2 desktop:col-span-6"

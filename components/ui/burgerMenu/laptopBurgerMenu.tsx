@@ -19,7 +19,7 @@ export default function LaptopBurgerMenu({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
+          className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer pt-5"
           onMouseEnter={() => setOpenMenu(true)}
           onMouseLeave={() => setOpenMenu(false)}
         >
@@ -59,7 +59,7 @@ export default function LaptopBurgerMenu({
         </motion.div>
       ) : (
         <div
-          className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
+          className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer pt-5"
           onMouseEnter={() => setOpenMenu(true)}
           onMouseLeave={() => setOpenMenu(false)}
         >
