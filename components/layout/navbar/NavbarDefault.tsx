@@ -23,60 +23,64 @@ export default function NavbarDefault() {
   if (!logoSize) return null;
 
   return (
-    <nav className="fixed z-30 top-5 tablet:top-[30px] left-0 w-full text-[15px]">
-      <Grid className="gap-[12px]">
+    <>
+      <nav className="fixed z-30 top-5 tablet:top-[30px] left-0 w-full text-[15px]">
+        <Grid className="gap-[12px]">
+          <div
+            className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px]"
+            style={{ width: `${logoSize}px` }}
+          >
+            <Link href="/">
+              <Image src={Logo} alt="Logo Name" />
+            </Link>
+          </div>
+          <div className="col-start-3 desktop:col-start-2">
+            <Link href="/about">About</Link>
+          </div>
+        </Grid>
         <div
-          className="col-start-1 col-span-2 desktop:col-span-1 pt-[4px]"
-          style={{ width: `${logoSize}px` }}
+          className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
+          onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
+          onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
+          onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
         >
-          <Link href="/">
-            <Image src={Logo} alt="Logo Name" />
-          </Link>
+          <p className="pb-5">Menu</p>
         </div>
-        <div className="col-start-3 desktop:col-start-2">
-          <Link href="/about">About</Link>
-        </div>
-      </Grid>
-      <div
-        className="absolute top-0 tablet:right-[40px] right-5 text-right w-auto cursor-pointer"
+      </nav>
+      <motion.div
+        initial={{ y: -20, opacity: 0, display: "none" }}
+        animate={
+          openMenu
+            ? { y: 0, opacity: 1, display: "flex" }
+            : { y: -20, opacity: 0, display: "none" }
+        }
+        transition={{ duration: 0.2, ease: "easeInOut" }}
         onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
         onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
-        onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
+        className={`fixed top-0 right-0 mt-[70px] pr-5 tablet:pr-[40px] flex flex-col text-[#CECECE] items-end gap-2 w-auto mix-blend-difference z-30 bg-black`}
       >
-        <p className="pb-5">Menu</p>
-        <motion.div
-          initial={{ y: -20, opacity: 0, display: "none" }}
-          animate={
-            openMenu
-              ? { y: 0, opacity: 1, display: "flex" }
-              : { y: -20, opacity: 0, display: "none" }
-          }
-          transition={{ duration: 0.2, ease: "easeInOut" }}
-          className={`flex flex-col text-[#CECECE] items-end gap-2 w-auto`}
+        <Link
+          href="/stillLife"
+          className="hover:text-white hover:italic"
+          onClick={() => setOpenMenu(false)}
         >
-          <Link
-            href="/stillLife"
-            className="hover:text-black"
-            onClick={() => setOpenMenu(false)}
-          >
-            Still Life
-          </Link>
-          <Link
-            href="/art"
-            className="hover:text-black"
-            onClick={() => setOpenMenu(false)}
-          >
-            Art
-          </Link>
-          <Link
-            href="/films"
-            className="hover:text-black"
-            onClick={() => setOpenMenu(false)}
-          >
-            Films
-          </Link>
-        </motion.div>
-      </div>
-    </nav>
+          Still Life
+        </Link>
+        <Link
+          href="/art"
+          className="hover:text-white hover:italic"
+          onClick={() => setOpenMenu(false)}
+        >
+          Art
+        </Link>
+        <Link
+          href="/films"
+          className="hover:text-white hover:italic"
+          onClick={() => setOpenMenu(false)}
+        >
+          Films
+        </Link>
+      </motion.div>
+    </>
   );
 }
