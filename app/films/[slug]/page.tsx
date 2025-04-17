@@ -10,6 +10,14 @@ const FILM_SLUG_QUERY = defineQuery(`
     slug.current == $slug
 ][0]{
   ...,
+  gallery[]{
+  ...,
+  video{ 
+  asset ->{
+  playbackId
+      }
+    }
+  }
 },
   "filmAllProject": *[
   _type == "film"

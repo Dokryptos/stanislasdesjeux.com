@@ -73,12 +73,12 @@ export default function NavbarAnimation() {
           </div>
         </Grid>
         <div
-          className="absolute top-0 right-0 pt-5 pr-5 tablet:pr-10 tablet:pt-[30px]  text-right w-auto cursor-pointer mix-blend-difference"
+          className="absolute top-0 right-0 pt-5 pr-5 tablet:pr-10 tablet:pt-[30px]  text-right w-auto cursor-pointer"
           onMouseEnter={!isMobile ? () => setOpenMenu(true) : undefined}
           onMouseLeave={!isMobile ? () => setOpenMenu(false) : undefined}
           onClick={isMobile ? () => setOpenMenu(!openMenu) : undefined}
         >
-          <p className="pb-5 text-white">Menu</p>
+          <p className="pb-5 text-black">Menu</p>
         </div>
       </motion.nav>
       <motion.div

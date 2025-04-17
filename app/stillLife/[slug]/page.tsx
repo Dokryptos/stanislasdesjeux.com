@@ -10,6 +10,14 @@ const STILLLIFE_SLUG_QUERY = defineQuery(`
     slug.current == $slug
 ][0]{
   ...,
+  gallery[]{
+  ...,
+  video{ 
+  asset ->{
+  playbackId
+      }
+    }
+  }
 },
   "stillLifeAllProject": *[
   _type == "stillLife"
