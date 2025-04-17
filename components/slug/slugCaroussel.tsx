@@ -14,10 +14,8 @@ interface ProjectType {
   gallery: {
     video?: {
       asset: {
-        _ref: string;
-        _type: "reference";
+        playbackId: string;
       };
-      playbackId?: string;
     };
     image?: { asset: { _ref: string } };
     imageTitle?: string;

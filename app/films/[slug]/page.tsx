@@ -14,7 +14,8 @@ const FILM_SLUG_QUERY = defineQuery(`
   ...,
   video{ 
   asset ->{
-  playbackId
+  playbackId,
+  
       }
     }
   }
@@ -38,6 +39,7 @@ export default async function filmSlug({
     notFound();
   }
   const { filmCurrentSlug, filmAllProject } = data;
+  console.log(filmCurrentSlug);
   return (
     <ProjectSlugComponent
       projectCurrent={filmCurrentSlug}

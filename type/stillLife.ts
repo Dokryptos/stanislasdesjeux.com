@@ -10,8 +10,6 @@ export interface SanityImage {
 }
 export interface SanityVideo {
   asset: {
-    _ref: string;
-    _type: "reference";
     playbackId?: string;
   };
 }
