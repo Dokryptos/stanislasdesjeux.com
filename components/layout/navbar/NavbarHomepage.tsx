@@ -92,18 +92,18 @@ export default function NavbarHomepage() {
         className={`fixed top-0 right-0 mt-[70px] pr-5 tablet:pr-[40px] flex flex-col text-white items-end gap-2 w-auto mix-blend-difference z-30 bg-black`}
       >
         <Link
-          href="/stillLife"
-          className=" hover:italic"
-          onClick={() => setOpenMenu(false)}
-        >
-          Still Life
-        </Link>
-        <Link
           href="/art"
           className="hover:italic"
           onClick={() => setOpenMenu(false)}
         >
           Art
+        </Link>
+        <Link
+          href="/stillLife"
+          className="hover:italic"
+          onClick={() => setOpenMenu(false)}
+        >
+          Still Life
         </Link>
         <Link
           href="/films"
