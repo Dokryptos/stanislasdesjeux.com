@@ -103,6 +103,7 @@ export default function ProjectSlugComponent({
           currentMedia?.video && (
             <VideoDisplay
               video={currentMedia?.video}
+              key={currentMedia?.video.asset.playbackId}
               title={`Vidéo ${currentMediaIndex} du projet ${projectCurrent.title}`}
             />
           )
