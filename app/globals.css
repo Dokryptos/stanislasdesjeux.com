@@ -46,7 +46,6 @@ body {
 }
 
 mux-player {
-  --bottom-controls: none;
-  --center-controls: none;
   --top-controls: none;
+  aspect-ratio: 16/9;
 }

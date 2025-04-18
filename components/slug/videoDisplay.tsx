@@ -39,7 +39,7 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
   };
   console.log(video);
   return (
-    <div className="col-start-1 col-span-6 tablet:col-start-2 tablet:col-span-7 laptop:col-start-4 laptop:col-span-6 flex justify-center items-center w-full h-dvh">
+    <div className="col-start-1 col-span-6 tablet:col-start-2 tablet:col-span-7 laptop:col-start-4 laptop:col-span-6 flex justify-center items-center w-full h-dvh ">
       <MuxPlayer
         ref={playerRef}
         nohotkeys
@@ -48,7 +48,7 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
         key={title}
         disable-tracking
         disableCookies
-        className="z-30 w-full relative flex justify-center items-center"
+        className="z-30 w-full file:flex justify-center items-center"
       />
       <div onClick={togglePlay} className="absolute ">
         <img
