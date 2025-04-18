@@ -14,7 +14,8 @@ const STILLLIFE_SLUG_QUERY = defineQuery(`
   ...,
   video{ 
   asset ->{
-  playbackId
+  playbackId,
+  data
       }
     }
   }
