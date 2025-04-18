@@ -48,7 +48,7 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
         key={title}
         disable-tracking
         disableCookies
-        className="z-30 w-full file:flex justify-center items-center"
+        className="z-30 w-full flex justify-center items-center"
       />
       <div onClick={togglePlay} className="absolute ">
         <img
