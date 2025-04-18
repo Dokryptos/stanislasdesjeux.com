@@ -3,6 +3,9 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/lib/live";
 import ProjectSlugComponent from "@/components/slug/slugCaroussel";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 const FILM_SLUG_QUERY = defineQuery(`
   {
   "filmCurrentSlug": *[

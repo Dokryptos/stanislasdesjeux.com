@@ -4,6 +4,9 @@ import LayoutNavbar from "@/components/layout/navbar";
 import { ReactNode } from "react";
 import localFont from "next/font/local";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Stanislas Desjeux",
 };

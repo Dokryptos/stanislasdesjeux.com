@@ -24,7 +24,6 @@ interface ProjectType {
   categorie?: string;
 }
 
-// Props du composant
 interface ProjectComponentProps {
   projectCurrent: ProjectType;
   projectAll: ProjectType[];

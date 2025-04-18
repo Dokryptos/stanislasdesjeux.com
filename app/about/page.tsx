@@ -2,6 +2,9 @@
 import { motion } from "framer-motion";
 import Grid from "@/components/ui/grid";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export default function About() {
   return (
     <motion.div className="pt-[88px] pb-10 text-[15px]/[1.6] h-dvh">

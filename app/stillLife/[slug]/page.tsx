@@ -2,6 +2,8 @@ import ProjectSlugComponent from "@/components/slug/slugCaroussel";
 import { notFound } from "next/navigation";
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/lib/live";
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 const STILLLIFE_SLUG_QUERY = defineQuery(`
   {

@@ -3,6 +3,9 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/lib/live";
 import SlugArt from "@/components/art/slug/artSlugComponent";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 const ART_SLUG_QUERY = defineQuery(`*[
     _type == "art" &&
     slug.current == $slug
