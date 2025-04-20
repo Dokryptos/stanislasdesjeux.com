@@ -58,7 +58,7 @@ export default function About() {
           </a>
         </motion.div>
         <motion.div
-          className="col-start-1 col-span-6 laptop:col-start-9 laptop:col-span-3 flex-col flex laptop:row-start-1"
+          className="col-start-1 col-span-6 laptop:col-start-9 laptop:col-span-3 flex-col flex laptop:row-start-1 pb-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
