@@ -2,13 +2,21 @@
 import artType from "@/type/art";
 import Grid from "../../ui/grid";
 import ArtMobileGallerySlug from "./artMobileGallerySlug";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ArtLaptopGallerySlug from "./artLaptopGallerySlug";
 import { AnimatePresence, motion } from "framer-motion";
 interface slugArtProps {
   artCurrentSlug: artType;
 }
 export default function SlugArt({ artCurrentSlug }: slugArtProps) {
+  useEffect(() => {
+    const disableRightClick = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("contextmenu", disableRightClick);
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+    };
+  }, []);
+
   const [openInfo, setOpenInfo] = useState<boolean>(true);
   const toggleDescription = () => {
     setOpenInfo(!openInfo);

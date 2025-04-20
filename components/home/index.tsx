@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { UIImageSanity } from "../ui/image/sanity";
 import Link from "next/link";
 import Grid from "../ui/grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 interface HomeDataProps {
   homeData: HomeImgType[];
 }
@@ -20,6 +20,14 @@ export default function HomeComponent({ homeData }: HomeDataProps) {
       transition: { delay: 3 + i * 0.3, duration: 1 },
     }),
   };
+
+  useEffect(() => {
+    const disableRightClick = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("contextmenu", disableRightClick);
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+    };
+  }, []);
 
   return (
     <div className="w-full h-dvh flex items-center justify-center pt-[50px] tablet:pt-0">

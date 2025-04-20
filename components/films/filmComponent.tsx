@@ -24,6 +24,14 @@ export default function FilmComponent({ filmData }: FilmDataProps) {
     }
   }, [hoveredProject]);
 
+  useEffect(() => {
+    const disableRightClick = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("contextmenu", disableRightClick);
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+    };
+  }, []);
+
   return (
     <div className="relative">
       <div className="absolute flex flex-col justify-center items-center h-dvh w-full z-20 laptop:mix-blend-difference">

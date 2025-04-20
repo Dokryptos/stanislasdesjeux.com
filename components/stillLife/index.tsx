@@ -19,6 +19,14 @@ export default function StillLifeComponent({
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
+    const disableRightClick = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("contextmenu", disableRightClick);
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       setIsMobileTablet(window.innerWidth < 1024);
     };
