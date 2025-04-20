@@ -3,12 +3,25 @@ import "./globals.css";
 import LayoutNavbar from "@/components/layout/navbar";
 import { ReactNode } from "react";
 import localFont from "next/font/local";
+import Favicon from "@/public/image/favicon.png";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Stanislas Desjeux",
+  description:
+    "Stanislas Desjeux est un photographe de nature morte vivant et travaillant à Paris. Son activité s’équilibre entre travail éditorial, commande publicitaire, et une recherche artistique et expérimentale plus personnelle.",
+  icons: {
+    icon: [{ rel: "icon", url: Favicon.src }],
+  },
+  openGraph: {
+    title: "Stanislas Desjeux",
+    description:
+      "Stanislas Desjeux est un photographe de nature morte vivant et travaillant à Paris. Son activité s’équilibre entre travail éditorial, commande publicitaire, et une recherche artistique et expérimentale plus personnelle.",
+    siteName: "Stanislas Desjeux Website",
+    type: "website",
+  },
 };
 
 type Props = {
