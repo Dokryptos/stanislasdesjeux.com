@@ -30,7 +30,7 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
             className="flex items-center relative cursor-pointer z-20"
             onClick={toggleDescription}
           >
-            <p className="text-[18px]">{artCurrentSlug.title}</p>
+            <p className="text-[19px]">{artCurrentSlug.title}</p>
             <p className="text-[10px] left-full absolute p-[5px] whitespace-nowrap">
               ({infoButton}info)
             </p>
@@ -44,7 +44,7 @@ export default function SlugArt({ artCurrentSlug }: slugArtProps) {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="overflow-hidden"
               >
-                <p className="text-[12px] whitespace-pre-wrap text-center pt-6 z-40">
+                <p className="text-[13px] whitespace-pre-wrap text-center pt-6 z-40">
                   {artCurrentSlug.description}
                 </p>
               </motion.div>
