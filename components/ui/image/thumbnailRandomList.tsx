@@ -149,7 +149,7 @@ export default function ThumbnailGrid({
               <UIImageSanity
                 asset={image.asset}
                 alt={`image thumbnail ${i}`}
-                className=" w-full h-full object-cover"
+                className=" w-auto h-full object-cover"
               />
             </motion.div>
           );
