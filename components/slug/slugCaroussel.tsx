@@ -6,7 +6,7 @@ import Grid from "../ui/grid";
 import CarouselNavigation from "../carousel/navigation";
 import ImageDisplay from "./imageDisplay";
 import VideoDisplay from "./videoDisplay";
-// Type générique pour StillLife, Film et Art
+
 interface ProjectType {
   _id: string;
   title: string;
@@ -91,6 +91,7 @@ export default function ProjectSlugComponent({
     if (currentMediaIndex === 0) {
       const prevProject =
         projectAll[(currentIndex - 1 + projectAll.length) % projectAll.length];
+
       router.push(`/${typeList}/${prevProject.slug.current}`);
     } else {
       setCurrentMediaIndex(currentMediaIndex - 1);

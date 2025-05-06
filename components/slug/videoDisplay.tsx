@@ -1,15 +1,21 @@
 "use client";
-import MuxPlayer from "@mux/mux-player-react";
 import { SanityVideo } from "@/type/film";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import pauseImg from "@/public/image/pause-video.png";
 import playImg from "@/public/image/play-video.png";
+import dynamic from "next/dynamic";
+
 interface VideoDisplayProps {
   video?: SanityVideo;
   title: string;
 }
+
+// Create a dynamic version of MuxPlayer that only renders on client side
+const DynamicMuxPlayer = dynamic(() => import("@mux/mux-player-react"), {
+  ssr: false,
+});
 
 export default function VideoDisplay({ video, title }: VideoDisplayProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,7 +65,7 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
       onTouchStart={triggerShowControls}
       onMouseMove={triggerShowControls}
     >
-      <MuxPlayer
+      <DynamicMuxPlayer
         nohotkeys
         ref={playerRef}
         loop
