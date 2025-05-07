@@ -5,19 +5,15 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import pauseImg from "@/public/image/pause-video.png";
 import playImg from "@/public/image/play-video.png";
-import dynamic from "next/dynamic";
+import MuxPlayer from "@mux/mux-player-react";
 
 interface VideoDisplayProps {
   video?: SanityVideo;
   title: string;
 }
 
-// Create a dynamic version of MuxPlayer that only renders on client side
-const DynamicMuxPlayer = dynamic(() => import("@mux/mux-player-react"), {
-  ssr: false,
-});
-
 export default function VideoDisplay({ video, title }: VideoDisplayProps) {
+  console.log(video?.asset);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const playerRef = useRef<any>(null);
   const [showControls, setShowControls] = useState(true);
@@ -59,18 +55,29 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
     player.paused ? player.play() : player.pause();
     triggerShowControls();
   }
+
+  const url =
+    video?.asset?.thumbTime !== null
+      ? `https://image.mux.com/${video?.asset.playbackId}/thumbnail.jpg` +
+        `?time=${video?.asset.thumbTime}` +
+        `&fit_mode=crop`
+      : `https://image.mux.com/${video?.asset.playbackId}/thumbnail.jpg` +
+        `?time=0` +
+        `&fit_mode=crop`;
+  console.log(video?.asset);
   return (
     <div
       className="col-start-1 col-span-6 tablet:col-start-2 tablet:col-span-7 laptop:col-start-4 laptop:col-span-6 flex justify-center items-center w-full h-dvh relative"
       onTouchStart={triggerShowControls}
       onMouseMove={triggerShowControls}
     >
-      <DynamicMuxPlayer
+      <MuxPlayer
         nohotkeys
         ref={playerRef}
         loop
         playbackId={video?.asset?.playbackId}
         key={title}
+        poster={url}
         disable-tracking
         disableCookies
         className="z-30 w-full flex justify-center items-center"
@@ -81,7 +88,7 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={togglePlay}
-          className="absolute flex items-center justify-center z-40"
+          className="absolute flex items-center justify-center z-40 inset-0"
         >
           <Image
             src={isPlaying ? pauseImg.src : playImg.src}

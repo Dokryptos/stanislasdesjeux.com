@@ -12,6 +12,7 @@ export interface SanityVideo {
   asset: {
     playbackId: string;
     data: object;
+    thumbTime: number;
   };
 }
 

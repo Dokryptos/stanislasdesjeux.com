@@ -16,6 +16,7 @@ interface ProjectType {
       asset: {
         playbackId: string;
         data: object;
+        thumbTime: number;
       };
     };
     image?: { asset: { _ref: string } };

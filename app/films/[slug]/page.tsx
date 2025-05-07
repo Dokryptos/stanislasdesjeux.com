@@ -18,7 +18,8 @@ const FILM_SLUG_QUERY = defineQuery(`
   video{ 
   asset ->{
   playbackId,
-  data
+  data,
+  thumbTime
       }
     }
   }
