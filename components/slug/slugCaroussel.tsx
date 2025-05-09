@@ -38,14 +38,6 @@ export default function ProjectSlugComponent({
 }: ProjectComponentProps) {
   const router = useRouter();
 
-  useEffect(() => {
-    const disableRightClick = (e: MouseEvent) => e.preventDefault();
-    document.addEventListener("contextmenu", disableRightClick);
-    return () => {
-      document.removeEventListener("contextmenu", disableRightClick);
-    };
-  }, []);
-
   const currentIndex = projectAll.findIndex(
     (p) => p.slug.current === projectCurrent.slug.current
   );

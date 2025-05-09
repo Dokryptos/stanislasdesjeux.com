@@ -88,7 +88,7 @@ export default function VideoDisplay({ video, title }: VideoDisplayProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={togglePlay}
-          className="absolute flex items-center justify-center z-40 inset-0"
+          className="absolute flex items-center justify-center z-40"
         >
           <Image
             src={isPlaying ? pauseImg.src : playImg.src}
