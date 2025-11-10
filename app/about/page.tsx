@@ -13,7 +13,7 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p>
-            Stanislas Desjeux est un photographe de nature morte vivant et
+            Stan Desjeux est un photographe de nature morte vivant et
             travaillant à Paris. Son activité s’équilibre entre travail
             éditorial, commande publicitaire, et une recherche artistique et
             expérimentale plus personnelle. Son écriture solaire et organique
@@ -48,7 +48,7 @@ export default function About() {
               contact@marievalat.com{" "}
             </a>
           </div>
-          <a href="tel:+33 6 22 80 25 80">+33(0) 6 22 80 25 80</a>
+          <a href="tel:+33 6 22 80 25 80">+33 (0)6 22 80 25 80</a>
           <a
             href="https://www.google.com/maps/place/21+Av.+de+Tourville/@48.8538312,2.3078164,20.5z/data=!4m7!3m6!1s0x47e6702657586e6d:0x9be1a279b72f0148!4b1!8m2!3d48.853826!4d2.3080599!16s%2Fg%2F11bw4c1m5r?hl=fr&entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
             target="_blank"
@@ -65,11 +65,11 @@ export default function About() {
         >
           <p className="pb-2">Contact</p>
           <a
-            href="mailto:stanislas.desjeux@gmail.com"
+            href="mailto:standesjeux@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            stanislas.desjeux@gmail.com
+            standesjeux@gmail.com
           </a>
           <a href="tel:+33 6 06 88 20 20">+33 (0)6 06 88 20 20</a>
           <a

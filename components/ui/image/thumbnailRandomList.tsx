@@ -122,6 +122,7 @@ export default function ThumbnailGrid({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preloadingKey]);
+
   return (
     <div className="relative w-full h-full">
       <AnimatePresence>

@@ -113,7 +113,7 @@ export default function ArtGallerySlug({ artGallery }: artGallerySlug) {
     >
       <div
         style={{ height: `${floatingImages.length * 300}px` }}
-        className="relative  "
+        className="relative"
       >
         {floatingImages.map((img) => (
           <ImageItemDesktop
