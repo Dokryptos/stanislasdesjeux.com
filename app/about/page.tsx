@@ -31,7 +31,7 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <p>Représenté en France par Marie Valat</p>
-          <div className="flex pb-2">
+          <div className="flex">
             <a
               href="https://www.marievalat.com/"
               target="_blank"

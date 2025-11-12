@@ -43,7 +43,7 @@ export default function NavbarHomepage() {
               className="relative"
             >
               <motion.div
-                className="col-start-1 col-span-2 desktop:col-span-1 pt-[4.5px]"
+                className="col-start-1 col-span-2 desktop:col-span-1 pt-[6px] tablet:pt-[4px]"
                 initial={{ width: logoSize.animated }}
                 animate={{ width: logoSize.normal }}
                 transition={{
