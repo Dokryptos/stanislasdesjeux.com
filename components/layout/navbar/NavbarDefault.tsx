@@ -27,7 +27,7 @@ export default function NavbarDefault() {
       <nav className="fixed z-30 top-5 tablet:top-[30px] left-0 w-full text-[15px]">
         <Grid className="gap-[12px]">
           <div
-            className="col-start-1 col-span-2 desktop:col-span-1 pt-[6px] tablet:pt-[4px]"
+            className="col-start-1 col-span-2 desktop:col-span-1 pt-[5px] tablet:pt-[4px]"
             style={{ width: `${logoSize}px` }}
           >
             <Link href="/">
