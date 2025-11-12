@@ -9,17 +9,17 @@ export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Stanislas Desjeux",
+  title: "Stan Desjeux",
   description:
-    "Stanislas Desjeux est un photographe de nature morte vivant et travaillant à Paris. Son activité s’équilibre entre travail éditorial, commande publicitaire, et une recherche artistique et expérimentale plus personnelle.",
+    "Stan Desjeux est un photographe de nature morte vivant et travaillant à Paris. Son activité s’équilibre entre travail éditorial, commande publicitaire, et une recherche artistique et expérimentale plus personnelle.",
   icons: {
     icon: [{ rel: "icon", url: Favicon.src }],
   },
   openGraph: {
-    title: "Stanislas Desjeux",
+    title: "Stan Desjeux",
     description:
-      "Stanislas Desjeux est un photographe de nature morte vivant et travaillant à Paris. Son activité s’équilibre entre travail éditorial, commande publicitaire, et une recherche artistique et expérimentale plus personnelle.",
-    siteName: "Stanislas Desjeux Website",
+      "Stan Desjeux est un photographe de nature morte vivant et travaillant à Paris. Son activité s’équilibre entre travail éditorial, commande publicitaire, et une recherche artistique et expérimentale plus personnelle.",
+    siteName: "Stan Desjeux",
     type: "website",
   },
 };
